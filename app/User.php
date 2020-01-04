@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use App\Planta;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -16,7 +17,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+
+        'name',
+        'apellido',
+        'cedula',
+        'email',
+
+
     ];
 
     /**
@@ -25,7 +32,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+
+        'password',
+        'remember_token',
+        'is_admin'
+
     ];
 
     /**
@@ -34,6 +45,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
+
         'email_verified_at' => 'datetime',
+
     ];
+    // de uno a uno con plantas de procesamiento
+    public function Planta(){
+        return $this->hasOne(Planta::class);;
+    }
+
 }
