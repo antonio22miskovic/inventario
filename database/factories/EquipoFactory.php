@@ -15,7 +15,7 @@ $factory->define(Equipo::class, function (Faker $faker) {
     	'modelo'=> $faker->sentence,
     	'marca' => $faker->title,
     	'codigo' => Str::random(6),
-    	'descripcion' => $faker->paragraph,
+    	'descripcion' => $faker->name,
     	'planta_id' => Planta::all()->random()->id,
         'categoria_id' => Categoria::all()->random()->id
 

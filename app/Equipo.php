@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Planta;
+use App\Planta;
 use App\Categoria;
 
 class Equipo extends Model
