@@ -5,6 +5,12 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
+use \Symfony\Component\HttpKernel\Exception\HttpException;
+use \Illuminate\Database\Eloquent\ModelNotFoundException;
+use \Illuminate\Database\QueryException;
+use \Illuminate\validation\ValidationException;
+use Illuminate\Auth\AuthenticationException;
+
 class Handler extends ExceptionHandler
 {
     /**
@@ -46,6 +52,27 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+            if ($exception instanceof ModelNotFoundException) {
+                return response()->json(['mensaje'=>'uuppsss disculpe por ahora no podremos procesar su peticion por favor intente mas tarde','codigo'=>400],400);
+            }
+
+             if ($exception instanceof ValidationException) {
+                return response()->json(['mensaje'=>$exception->validator->errors(),'codigo'=>400],400);
+            }
+
+             if ($exception instanceof QueryException) {
+                return response()->json(['mensaje'=>'uff'.$exception->getMessage(),'codigo'=>400],400);
+            }
+
+             if ($exception instanceof HttpException) {
+                return response()->json(['mensaje'=>'ruta no encontrada','codigo'=>404],404);
+            }
+
+             if ($exception instanceof AuthenticationException) {
+                return response()->json(['mensaje'=>'autorizacion denegada','codigo'=>401],401);
+            }
+
+
         return parent::render($request, $exception);
     }
 }

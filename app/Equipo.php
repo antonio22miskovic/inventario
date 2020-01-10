@@ -17,12 +17,9 @@ class Equipo extends Model
     	'marca',
     	'codigo',
     	'descripcion',
-
-    ];
-
-    protected $hidden = [
-    	'planta_id',
+        'planta_id',
         'categoria_id'
+
     ];
 
     public function planta(){

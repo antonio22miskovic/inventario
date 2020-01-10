@@ -4,17 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Equipo;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class EquipoController extends Controller
 {
 
     public function index()
     {
+
         return Equipo::orderBy('id', 'desc')->paginate(20);
     }
 
     public function store(Request $request)
     {
+        $user = Auth::user();
+        $planta = $user->planta;
         Equipo::create([
 
             'nombre' => $request['nombre'],
@@ -22,8 +25,8 @@ class EquipoController extends Controller
             'marca' => $request['marca'],
             'codigo' => $request['codigo'],
             'descripcion' => $request['descripcion'],
-            'planta_id' => $request['planta_id'],
-            'categoria_id' => $request['categoria_id']
+            'planta_id' => $planta->id,
+            'categoria_id' => '1'
 
         ]);
 

@@ -19,7 +19,7 @@ class UserTableSeeder extends Seeder
         	'cedula' => '127137013',
         	'email' => 'juan@gmail.com',
         	'password' => bcrypt(1234),
-			'is_admin' => 'true'
+
 
         ]);
 
@@ -30,6 +30,7 @@ class UserTableSeeder extends Seeder
         	'cedula' => '26382644',
         	'email' => 'ramon@gmail.com',
         	'password' => bcrypt(1234),
+            'is_admin' => 'true'
 
 
         ]);

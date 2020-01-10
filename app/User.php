@@ -50,7 +50,7 @@ class User extends Authenticatable
 
     ];
     // de uno a uno con plantas de procesamiento
-    public function Planta(){
+    public function planta(){
         return $this->hasOne(Planta::class);;
     }
 

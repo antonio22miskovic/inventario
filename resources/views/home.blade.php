@@ -1,12 +1,16 @@
-@extends('layouts.app')
+@extends('layouts.app' ,['user'=> $user,'plnata'=>$planta])
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div id="ins">
+<div class="py-4">
 
-        </div>
-    </div>
+
+</div>
+{{-- <form id="logout-form" action="{{ route('logout') }}" method="POST">
+    @csrf
+    <input type="submit" name="logout" value="logout">
+                                    </form> --}}
+       <example-component></example-component>
+
 </div>
 @endsection
