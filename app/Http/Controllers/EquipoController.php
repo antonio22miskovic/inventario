@@ -26,7 +26,7 @@ class EquipoController extends Controller
             'codigo' => $request['codigo'],
             'descripcion' => $request['descripcion'],
             'planta_id' => $planta->id,
-            'categoria_id' => '1'
+            'categoria_id' => $request['categoria']
 
         ]);
 

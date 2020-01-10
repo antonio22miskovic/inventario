@@ -67,7 +67,8 @@
                                                      v-model="datos.categoria"
                                                      name="categoria"
                                                       class="form-control">
-                                                         <option v-for="(valor , index) of valores" :key="valor.id" :value="index"> {{
+                                                         <option> seleccione la categoria del equipo </option>
+                                                         <option v-for="valor of valores" :key="valor.id" :value="valor.id"> {{
                                                          valor.categoria }}</option>
                                                     </select>
                                                  </div>
@@ -101,49 +102,51 @@
 <script>
 import Swal from 'sweetalert2'
     export default {
-        mounted() {
-
-            axios.get('http://127.0.0.1:8000/categoria')
-             .then((response) => {
-             const valores = response.data;
-                console.log(valores)
-             })
-        },
+        name:'ExampleComponent',
         data(){
             return{
 
                 valores:[],
-                datos:[{
 
+                datos:[{
                 'nombre':'',
                 'modelo':'',
                 'marca':'',
                 'codigo':'',
                 'descripcion':'',
                 'categoria': '',
-
                 }],
 
                 categoria:[{
                     'categoria':'',
                     'descripcion':''
                 }],
+
                 mostrar: false,
+
                 button: 'agrega una nueva categoria',
+
             }
         },
+
+
+        mounted(){
+            axios.get('http://127.0.0.1:8000/categoria')
+             .then((response) => {
+            this.valores = response.data;
+             })
+        },
+
+
         methods:{
             registrar(){
-
                 const data = {
-
                     'nombre': this.datos.nombre,
                     'modelo': this.datos.modelo,
                     'marca': this.datos.marca,
                     'codigo': this.datos.codigo,
                     'descripcion': this.datos.descripcion,
                     'categoria': this.datos.categoria,
-
                 };
 
             axios.post('http://127.0.0.1:8000/equipo', data)
@@ -161,25 +164,24 @@ import Swal from 'sweetalert2'
                  icon: 'success',
                 title: 'equipo registrado con exito',
                 showConfirmButton: true,
+                })
 
-                        })
+            })
+            .catch((error) => {
+                if (error.response) {
 
-                      })
-                  .catch((error) => {
-                      if (error.response) {
+                        console.log(error.response.data);
+                        console.log(error.response.status);
+                        console.log(error.response.headers);
 
-                             console.log(error.response.data);
-                             console.log(error.response.status);
-                             console.log(error.response.headers);
+                } else if (error.request) {
 
-                     } else if (error.request) {
+                        console.log(error.request);
+                } else {
 
-                            console.log(error.request);
-                     } else {
-
-                            console.log('Error', error.message);
-                     }
-                 })
+                        console.log('Error', error.message);
+                }
+            })
 
             },
             agregacategoria(){
@@ -204,14 +206,16 @@ import Swal from 'sweetalert2'
                     this.categoria.categoria = '';
                  this.categoria.descripcion = '';
 
-
-                 Swal.fire({
+                Swal.fire({
                 position: 'top-end',
-                 icon: 'success',
+                icon: 'success',
                 title: 'la categoria se ah añadido con exito',
                 showConfirmButton: true,
 
-                        })
+                        });
+
+                    this.mostrar = false;
+                    this.button= 'agrega una nueva categoria';
 
                       })
                   .catch((error) => {
@@ -228,9 +232,11 @@ import Swal from 'sweetalert2'
 
                             console.log('Error', error.message);
                      }
-                 })
+                 });
 
-
+                axios.get('http://127.0.0.1:8000/categoria')
+                .then((response) => {
+                this.valores = response.data; });
             }
         }
     }

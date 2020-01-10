@@ -12,9 +12,19 @@ Vue.prototype.$http = window.axios;
 
 import Swal from 'sweetalert2'
 
+//boostrap-vu
+import  BootstrapVue from 'bootstrap-vue'
+// Install BootstrapVue
+Vue.use(BootstrapVue)
+// Optionally install the BootstrapVue icon components plugin
+import  IconsPlugin from 'bootstrap-vue'
+Vue.use(IconsPlugin)
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('home', require('./views/Home.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

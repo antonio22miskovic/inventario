@@ -6,11 +6,9 @@
 
 
 </div>
-{{-- <form id="logout-form" action="{{ route('logout') }}" method="POST">
-    @csrf
-    <input type="submit" name="logout" value="logout">
-                                    </form> --}}
-       <example-component></example-component>
+
+      <home></home>
+
 
 </div>
 @endsection
