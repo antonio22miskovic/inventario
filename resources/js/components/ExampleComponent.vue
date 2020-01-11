@@ -126,6 +126,8 @@ import Swal from 'sweetalert2'
 
                 button: 'agrega una nueva categoria',
 
+                errors:[],
+
             }
         },
 
@@ -177,9 +179,11 @@ import Swal from 'sweetalert2'
                 } else if (error.request) {
 
                         console.log(error.request);
+
                 } else {
 
                         console.log('Error', error.message);
+
                 }
             })
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Equipo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\EquipoRequest;
 class EquipoController extends Controller
 {
 
@@ -14,7 +15,7 @@ class EquipoController extends Controller
         return Equipo::orderBy('id', 'desc')->paginate(20);
     }
 
-    public function store(Request $request)
+    public function store(EquipoRequest $request)
     {
         $user = Auth::user();
         $planta = $user->planta;
