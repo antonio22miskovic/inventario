@@ -21,7 +21,8 @@
         "sass": "^1.15.2",
         "sass-loader": "^7.1.0",
         "vue": "^2.6.11",
-        "vue-template-compiler": "^2.6.11"
+        "vue-template-compiler": "^2.6.11",
+        "vueye-datatable": "^0.1.16"
     },
     "dependencies": {
         "bootstrap-vue": "^2.1.0",

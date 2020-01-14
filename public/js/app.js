@@ -2096,9 +2096,96 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ListadoEquipos',
-  components: {}
+  components: {},
+  data: function data() {
+    return {
+      equipos: [],
+      paginate: {
+        'tota': 0,
+        'current_page': 0,
+        'per_page': 0,
+        'last_page': 0,
+        'from': 0,
+        'to': 0
+      }
+    };
+  },
+  methods: {
+    Chagepage: function Chagepage(page) {
+      this.paginate.current_page = page;
+      this.listado(page);
+    },
+    listado: function listado(page) {
+      var _this = this;
+
+      var url = 'http://127.0.0.1:8000/equipo?page=' + page;
+      axios.get(url).then(function (res) {
+        _this.equipos = res.data.equipo.data;
+        _this.paginate = res.data.paginate;
+      });
+    },
+    editar: function editar(equipo, page) {},
+    eliminar: function eliminar(equipo, page) {},
+    detalles: function detalles(equipo, page) {}
+  },
+  mounted: function mounted() {
+    this.listado(1);
+  },
+  computed: {
+    esActivo: function esActivo() {
+      return this.paginate.current_page;
+    },
+    nuPages: function nuPages() {
+      if (!this.paginate.to) {
+        return [];
+      }
+
+      var from = this.paginate.current_page - 5; //todo
+
+      if (from < 1) {
+        from = 1;
+      }
+
+      var to = from + 5 * 5;
+
+      if (to >= this.paginate.last_page) {
+        to = this.paginate.last_page;
+      }
+
+      var pageArray = [];
+
+      while (from <= to) {
+        pageArray.push(from);
+        from++;
+      }
+
+      return pageArray;
+    }
+  }
 });
 
 /***/ }),
@@ -71069,48 +71156,181 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("b-container", [
-    _c("table", { staticClass: "table table-responsive table-bordered" }, [
-      _c("tbody", [
-        _c("thead", {}, [
-          _c("tr", [
-            _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
-              _vm._v("Nombre")
-            ]),
-            _vm._v(" "),
-            _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
-              _vm._v("modelo")
-            ]),
-            _vm._v(" "),
-            _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
-              _vm._v("marca")
-            ]),
-            _vm._v(" "),
-            _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
-              _vm._v("codigo")
-            ])
-          ])
-        ]),
-        _vm._v(" "),
+    _c("table", { staticClass: "table" }, [
+      _c("thead", { staticClass: "thead-dark" }, [
         _c("tr", [
-          _c("td", { staticClass: "text-center" }),
+          _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
           _vm._v(" "),
-          _c("td", { staticClass: "text-center" }),
+          _c("th", { attrs: { scope: "col" } }, [_vm._v("nombre")]),
           _vm._v(" "),
-          _c("td", { staticClass: "text-centzer" }),
+          _c("th", { attrs: { scope: "col" } }, [_vm._v("modelo")]),
           _vm._v(" "),
-          _c("td", { staticClass: "text-center" }, [
-            _c("a", { staticClass: "btn btn-primary", attrs: { href: "" } }, [
-              _vm._v("ver")
-            ])
+          _c("th", { attrs: { scope: "col" } }, [_vm._v("marca")]),
+          _vm._v(" "),
+          _c("th", { attrs: { scope: "col" } }, [_vm._v("codigo")]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("editar equipo")
           ]),
           _vm._v(" "),
-          _c("td", { staticClass: "text-center" }, [
-            _c("a", { staticClass: "btn btn-success", attrs: { href: "" } }, [
-              _vm._v("asignar")
-            ])
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("eliminar el equipo")
+          ]),
+          _vm._v(" "),
+          _c("th", { staticClass: "text-center", attrs: { scope: "col" } }, [
+            _vm._v("detalles")
           ])
         ])
-      ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.equipos, function(equipo) {
+          return _c("tr", { key: equipo.id }, [
+            _c("th", { attrs: { scope: "row" } }, [
+              _vm._v(" " + _vm._s(equipo.id))
+            ]),
+            _vm._v(" "),
+            _c("td", [_vm._v("t" + _vm._s(equipo.nombre))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(equipo.modelo))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(equipo.marca))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(equipo.codigo))]),
+            _vm._v(" "),
+            _c("td", { staticClass: "text-center" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary text-center",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.editar(equipo, _vm.paginate.current_page)
+                    }
+                  }
+                },
+                [_vm._v(" editar ")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("td", { staticClass: "text-center" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger text-center",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.eliminar(equipo, _vm.paginate.current_page)
+                    }
+                  }
+                },
+                [_vm._v("eliminar")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("td", { staticClass: "text-center" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary text-center",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.detalles(equipo, _vm.paginate.current_page)
+                    }
+                  }
+                },
+                [_vm._v(" detalles ")]
+              )
+            ])
+          ])
+        }),
+        0
+      )
+    ]),
+    _vm._v(" "),
+    _c("nav", { attrs: { "aria-label": "Page navigation example" } }, [
+      _c(
+        "ul",
+        { staticClass: "pagination " },
+        [
+          _vm.paginate.current_page > 1
+            ? _c("li", { staticClass: "page-item" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "page-link",
+                    attrs: { href: "#", "aria-label": "Previous" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.Chagepage(_vm.paginate.current_page - 1)
+                      }
+                    }
+                  },
+                  [
+                    _c("span", { attrs: { "aria-hidden": "true" } }, [
+                      _vm._v("«")
+                    ])
+                  ]
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm._l(_vm.nuPages, function(page) {
+            return _c(
+              "li",
+              {
+                staticClass: "page-item",
+                class: [page == _vm.esActivo ? "active" : ""]
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "page-link",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.Chagepage(page)
+                      }
+                    }
+                  },
+                  [_vm._v(_vm._s(page))]
+                )
+              ]
+            )
+          }),
+          _vm._v(" "),
+          _vm.paginate.current_page < _vm.paginate.last_page
+            ? _c("li", { staticClass: "page-item" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "page-link",
+                    attrs: { href: "#", "aria-label": "Previous" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.Chagepage(_vm.paginate.current_page + 1)
+                      }
+                    }
+                  },
+                  [
+                    _c("span", { attrs: { "aria-hidden": "true" } }, [
+                      _vm._v("»")
+                    ])
+                  ]
+                )
+              ])
+            : _vm._e()
+        ],
+        2
+      )
     ])
   ])
 }

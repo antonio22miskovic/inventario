@@ -9,10 +9,27 @@ use App\Http\Requests\EquipoRequest;
 class EquipoController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
+        $user = Auth::user();
+        $planta = $user->planta;
+        $equipo = Equipo::orderBy('id', 'desc')->where('planta_id',$planta->id)->paginate(5);
 
-        return Equipo::orderBy('id', 'desc')->paginate(20);
+        return [
+
+            'paginate' => [
+
+                'total' => $equipo->total(),
+                'current_page' => $equipo->currentPage(),
+                'per_page' => $equipo->perPage(),
+                'last_page' => $equipo->lastPage(),
+                'from' => $equipo->firstItem(),
+                'to' => $equipo->lastPage(),
+
+            ],
+           'equipo' => $equipo
+        ];
+
     }
 
     public function store(EquipoRequest $request)
