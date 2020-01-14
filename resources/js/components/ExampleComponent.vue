@@ -133,7 +133,7 @@ import Swal from 'sweetalert2'
 
 
         mounted(){
-            axios.get('http://127.0.0.1:8000/categoria')
+            axios.get('categoria')
              .then((response) => {
             this.valores = response.data;
              })
@@ -151,7 +151,7 @@ import Swal from 'sweetalert2'
                     'categoria': this.datos.categoria,
                 };
 
-            axios.post('http://127.0.0.1:8000/equipo', data)
+            axios.post('equipo', data)
                  .then((response) => {
 
                     this.datos.nombre = '';
@@ -205,7 +205,7 @@ import Swal from 'sweetalert2'
                     'descripcion' : this.categoria.descripcion
                 };
 
-                axios.post('http://127.0.0.1:8000/categoria', cat)
+                axios.post('categoria', cat)
                  .then((response) => {
                     this.categoria.categoria = '';
                  this.categoria.descripcion = '';
@@ -238,7 +238,7 @@ import Swal from 'sweetalert2'
                      }
                  });
 
-                axios.get('http://127.0.0.1:8000/categoria')
+                axios.get('categoria')
                 .then((response) => {
                 this.valores = response.data; });
             }

@@ -14,7 +14,7 @@ class PlantaTableSeeder extends Seeder
     {
         	Planta::create([
 
-        	'nombre' => 'pastas',
+        	'planta' => 'pastas',
     		'descripcion' => 'procesamiento de pastas',
     		'localidad' => 'maracay calle x',
     		'user_id' => '1'
@@ -22,7 +22,7 @@ class PlantaTableSeeder extends Seeder
         	]);
         	Planta::create([
 
-        	'nombre' => 'nuciven',
+        	'planta' => 'nuciven',
     		'descripcion' => 'procesamiento de nucitas',
     		'localidad' => 'maracay calle x',
     		'user_id' => '2'
@@ -31,7 +31,7 @@ class PlantaTableSeeder extends Seeder
 
         	Planta::create([
 
-        	'nombre' => 'molvenca',
+        	'planta' => 'molvenca',
     		'descripcion' => ',olinos de venezuela',
     		'localidad' => 'maracay calle x',
     		'user_id' => '3'
@@ -40,7 +40,7 @@ class PlantaTableSeeder extends Seeder
 
         	Planta::create([
 
-        	'nombre' => 'vitalin',
+        	'planta' => 'vitalin',
     		'descripcion' => 'alimentos para animales',
     		'localidad' => 'maracay calle x',
     		'user_id' => '4'
@@ -49,7 +49,7 @@ class PlantaTableSeeder extends Seeder
 
         	Planta::create([
 
-        	'nombre' => 'magdaleno',
+        	'planta' => 'magdaleno',
     		'descripcion' => 'procesamiento de cacao',
     		'localidad' => 'magdaleno calle x',
     		'user_id' => '5'

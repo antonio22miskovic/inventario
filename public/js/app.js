@@ -1967,7 +1967,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios.get('http://127.0.0.1:8000/categoria').then(function (response) {
+    axios.get('categoria').then(function (response) {
       _this.valores = response.data;
     });
   },
@@ -1983,7 +1983,7 @@ __webpack_require__.r(__webpack_exports__);
         'descripcion': this.datos.descripcion,
         'categoria': this.datos.categoria
       };
-      axios.post('http://127.0.0.1:8000/equipo', data).then(function (response) {
+      axios.post('equipo', data).then(function (response) {
         _this2.datos.nombre = '';
         _this2.datos.modelo = '';
         _this2.datos.marca = '';
@@ -2024,7 +2024,7 @@ __webpack_require__.r(__webpack_exports__);
         'categoria': this.categoria.categoria,
         'descripcion': this.categoria.descripcion
       };
-      axios.post('http://127.0.0.1:8000/categoria', cat).then(function (response) {
+      axios.post('categoria', cat).then(function (response) {
         _this3.categoria.categoria = '';
         _this3.categoria.descripcion = '';
         sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
@@ -2046,7 +2046,7 @@ __webpack_require__.r(__webpack_exports__);
           console.log('Error', error.message);
         }
       });
-      axios.get('http://127.0.0.1:8000/categoria').then(function (response) {
+      axios.get('categoria').then(function (response) {
         _this3.valores = response.data;
       });
     }
@@ -2064,6 +2064,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2118,6 +2120,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ListadoEquipos',
   components: {},
@@ -2142,15 +2145,42 @@ __webpack_require__.r(__webpack_exports__);
     listado: function listado(page) {
       var _this = this;
 
-      var url = 'http://127.0.0.1:8000/equipo?page=' + page;
+      var url = 'equipo?page=' + page;
       axios.get(url).then(function (res) {
         _this.equipos = res.data.equipo.data;
         _this.paginate = res.data.paginate;
       });
     },
-    editar: function editar(equipo, page) {},
-    eliminar: function eliminar(equipo, page) {},
-    detalles: function detalles(equipo, page) {}
+    editar: function editar(equipo, page) {
+      var url = 'equipo/' + equipo.id;
+      axios.get(url).then(function (res) {});
+    },
+    eliminar: function eliminar(equipo, page) {
+      var _this2 = this;
+
+      sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
+        title: 'estas seguro?',
+        text: "deseas eliminar al equipo averiado!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.value) {
+          axios["delete"]('equipo/' + equipo.id).then(function (res) {
+            _this2.listado(page);
+          });
+          sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire('eliminado', 'se ah eliminado con exito.', 'success');
+        }
+      });
+    },
+    detalles: function detalles(equipo, page) {
+      axios.get('equipo/' + equipo.id).then(function (res) {
+        var datos = res.data.equipo;
+        console.log(datos);
+      });
+    }
   },
   mounted: function mounted() {
     this.listado(1);

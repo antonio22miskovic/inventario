@@ -27,7 +27,7 @@
                 <div class="container">
 
                 <h4 class="navbar">
-                    {{ $planta->nombre }}
+                    {{ $planta->planta }}
                 </h4>
                </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

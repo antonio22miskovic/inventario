@@ -15,7 +15,7 @@ class CreatePlantasTable extends Migration
     {
         Schema::create('plantas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nombre');
+            $table->string('planta');
             $table->text('descripcion');
             $table->string('localidad');
             $table->bigInteger('user_id')->unsigned()->nullable();

@@ -12,7 +12,7 @@ class Planta extends Model
 
     protected $fillable = [
 
-    	'nombre',
+    	'planta',
     	'descripcion',
     	'localidad',
 

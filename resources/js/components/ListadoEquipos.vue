@@ -1,6 +1,6 @@
 <template>
 	<b-container>
-		<!-- <button @click="listado"> listado</button> -->
+
 		<table class="table">
   <thead class="thead-dark">
     <tr>
@@ -53,7 +53,7 @@
 	</b-container>
 </template>
 <script>
-
+import Swal from 'sweetalert2'
 	export default{
 
 		name:'ListadoEquipos',
@@ -91,7 +91,7 @@
 
     listado(page){
 
-        var url = 'http://127.0.0.1:8000/equipo?page='+page;
+        var url = 'equipo?page='+page;
         axios.get(url).then(res=>{
         this.equipos=res.data.equipo.data;
         this.paginate = res.data.paginate;
@@ -101,16 +101,51 @@
 
     editar(equipo, page){
 
+    let url = 'equipo/'+equipo.id;
+       axios.get(url).then(res=>{
 
+       })
     },
 
     eliminar(equipo, page){
 
+      Swal.fire({
+      title: 'estas seguro?',
+      text: "deseas eliminar al equipo averiado!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+          if (result.value) {
 
+            axios.delete('equipo/'+equipo.id)
+            .then(res=>{
+              this.listado(page)
+
+       })
+            Swal.fire(
+            'eliminado',
+            'se ah eliminado con exito.',
+            'success'
+    )
+  }
+})
 
     },
 
     detalles(equipo, page){
+
+      axios.get('equipo/'+equipo.id)
+      .then(res=>{
+
+        let datos = res.data.equipo;
+        console.log(datos)
+
+       })
+
+
 
 
     },
