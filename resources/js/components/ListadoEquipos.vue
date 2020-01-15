@@ -1,6 +1,118 @@
 <template>
 	<b-container>
 
+    <div>
+
+        <div class="modal fade" id="detallesmodalcenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                   <h5 class="modal-title " id="exampleModalCenterTitle">nombre del equipo: {{ this.detalle.nombre }}</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                      </button>
+                </div>
+              <div class="modal-body">
+                <div>
+                  <p> codigo:  {{ this.detalle.codigo }}</p>
+                  <p> marca:  {{ this.detalle.marca }}</p>
+                  <p> modelo:  {{ this.detalle.modelo}}</p>
+                  <p> descripcion:  {{ this.detalle.descripcion}}</p>
+                  <h5> categoria del equipo </h5>
+                  <p> categoria:  {{ this.categoria.categoria }}</p>
+                  <p> descripcion de la categoria:  {{ this.categoria.descripcion}}</p>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div>
+      <div class="modal fade" id="editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+           <div class="modal-content">
+                <div class="modal-header">
+                   <h5 class="modal-title text-center " id="exampleModalCenterTitle">actualizar los datos</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                      </button>
+                </div>
+                <div class="modal-body">
+                      <form class="form-horizontal" @submit.prevent="update(fillequipo.id)">
+                        <fieldset>
+                            <legend class="text-center header">actualizar los datos del equipo averiado</legend>
+
+                          <div class="form-group">
+                              <span class="col-md-1 col-md-offset-2 text-center"><label>nombre</label></span>
+                              <div class="col justify-content-center">
+                                  <input id="nombre" v-model="fillequipo.nombre" name="nombre" type="text" placeholder="nombre del equipo averiado" class="form-control">
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><label>modelo</label></span>
+                                <div class="col justify-content-center">
+                                    <input id="modelo" v-model="fillequipo.modelo" name="modelo" type="text" placeholder="modelo del equipo" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><label>marca</label></span>
+                                <div class="col justify-content-center">
+                                    <input id="marca" v-model="fillequipo.marca" name="marca" type="text" placeholder="marca del equipo" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><label>codigo</label></span>
+                                <div class="col justify-content-center">
+                                    <input id="codigo" v-model="fillequipo.codigo" name="codigo" type="text" placeholder="codigo del equipo" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><label>categoria</label></span>
+                                <div class="col justify-content-center">
+                                  <select  id="categoria"
+                                  v-model="fillequipo.categoria"
+                                  name="categoria"
+                                  class="form-control">
+                                     <option> seleccione la categoria del equipo </option>
+                                     <option v-for="valor of valores" :key="valor.id" :value="valor.id"> {{valor.categoria }}</option>
+                                  </select>
+                                </div>
+                              </div>
+
+                              <div class="form-group">
+                                  <span class="col-md-1 col-md-offset-2 text-center"><label>descripcion</label></span>
+                                  <div class="col justify-content-center">
+                                      <textarea class="form-control" v-model="fillequipo.descripcion" id="descripcion" name="descripcion" placeholder="descripcion del equipo averiado" rows="7"></textarea>
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-12 text-center">
+                                        <button type="submit" class="btn btn-primary btn-lg">registrar</button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                          </form>
+
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
 		<table class="table">
   <thead class="thead-dark">
     <tr>
@@ -21,9 +133,9 @@
       <td>{{ equipo.modelo }}</td>
       <td>{{ equipo.marca }}</td>
        <td>{{ equipo.codigo }}</td>
-         <td class="text-center"> <button class="btn btn-primary text-center"  @click.prevent="editar(equipo, paginate.current_page)"> editar </button></td>
+         <td class="text-center"> <button class="btn btn-primary text-center" data-toggle="modal" data-target="#editar"  @click.prevent="editar(equipo, paginate.current_page)"> editar </button></td>
            <td class="text-center"><button class="btn btn-danger text-center"  @click.prevent="eliminar(equipo, paginate.current_page)">eliminar</button></td>
-            <td class="text-center"> <button class="btn btn-primary text-center" @click.prevent="detalles(equipo, paginate.current_page)"> detalles </button></td>
+            <td class="text-center"> <button class="btn btn-primary text-center" data-toggle="modal" data-target="#detallesmodalcenter" @click.prevent="detalles(equipo)"> detalles </button></td>
     </tr>
 
   </tbody>
@@ -66,6 +178,24 @@ import Swal from 'sweetalert2'
     return {
 
   		equipos:[],
+
+      detalle:[],
+
+      valores:[],
+
+      fillequipo:{
+                'id': '',
+                'nombre':'',
+                'modelo':'',
+                'marca':'',
+                'codigo':'',
+                'descripcion':'',
+                'categoria': '',
+
+      },
+
+      categoria:[],
+
   		paginate:{
 
                 'tota': 0,
@@ -100,11 +230,38 @@ import Swal from 'sweetalert2'
     },
 
     editar(equipo, page){
+      this.fillequipo.id = equipo.id;
+      this.fillequipo.nombre = equipo.nombre;
+      this.fillequipo.modelo = equipo.modelo;
+      this.fillequipo.marca = equipo.marca;
+      this.fillequipo.codigo = equipo.codigo;
+      this.fillequipo.descripcion = equipo.descripcion;
+      this.fillequipo.categoria = equipo.categoria_id
 
-    let url = 'equipo/'+equipo.id;
-       axios.get(url).then(res=>{
+      axios.get('categoria')
+             .then((response) => {
+            this.valores = response.data;
+             })
 
-       })
+    },
+
+    update(id){
+
+      axios.put('equipo/'+id, this.fillequipo).
+      then(response =>{
+
+        this.listado(this.paginate.current_page);
+
+        Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: ' se ah actualizado con exito',
+        showConfirmButton: false,
+        timer: 1500
+})
+
+      })
+
     },
 
     eliminar(equipo, page){
@@ -135,13 +292,14 @@ import Swal from 'sweetalert2'
 
     },
 
-    detalles(equipo, page){
+    detalles(equipo){
 
       axios.get('equipo/'+equipo.id)
       .then(res=>{
 
-        let datos = res.data.equipo;
-        console.log(datos)
+       this.detalle = res.data.equipo;
+       this.categoria = res.data.equipo.categoria;
+
 
        })
 
@@ -151,7 +309,6 @@ import Swal from 'sweetalert2'
     },
 
   },
-
 
   mounted() {
 

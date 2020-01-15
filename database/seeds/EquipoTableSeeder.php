@@ -12,6 +12,6 @@ class EquipoTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Equipo::class,30)->create();
+        factory(Equipo::class,1000)->create();
     }
 }
