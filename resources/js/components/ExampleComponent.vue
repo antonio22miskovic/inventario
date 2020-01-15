@@ -133,14 +133,21 @@ import Swal from 'sweetalert2'
 
 
         mounted(){
-            axios.get('categoria')
-             .then((response) => {
-            this.valores = response.data;
-             })
+
+            this.listar();
         },
 
 
         methods:{
+
+            listar(){
+
+                  axios.get('categoria')
+                .then((response) => {
+                this.valores = response.data;
+                })
+            },
+
             registrar(){
                 const data = {
                     'nombre': this.datos.nombre,
@@ -238,9 +245,7 @@ import Swal from 'sweetalert2'
                      }
                  });
 
-                axios.get('categoria')
-                .then((response) => {
-                this.valores = response.data; });
+                this.listar();
             }
         }
     }

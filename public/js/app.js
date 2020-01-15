@@ -1965,13 +1965,16 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    var _this = this;
-
-    axios.get('categoria').then(function (response) {
-      _this.valores = response.data;
-    });
+    this.listar();
   },
   methods: {
+    listar: function listar() {
+      var _this = this;
+
+      axios.get('categoria').then(function (response) {
+        _this.valores = response.data;
+      });
+    },
     registrar: function registrar() {
       var _this2 = this;
 
@@ -2046,9 +2049,7 @@ __webpack_require__.r(__webpack_exports__);
           console.log('Error', error.message);
         }
       });
-      axios.get('categoria').then(function (response) {
-        _this3.valores = response.data;
-      });
+      this.listar();
     }
   }
 });
