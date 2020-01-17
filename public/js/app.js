@@ -2392,6 +2392,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -72055,17 +72061,13 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "b-container",
+    { staticClass: "text-center " },
     [
-      _c("b-container", { staticClass: "text-center p-2" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-primary sm-auto",
-            on: { click: _vm.cambiar }
-          },
-          [_vm._v(_vm._s(this.button))]
-        )
-      ]),
+      _c(
+        "button",
+        { staticClass: "btn btn-primary sm-auto", on: { click: _vm.cambiar } },
+        [_vm._v(_vm._s(this.button))]
+      ),
       _vm._v(" "),
       _vm.registrar === true ? _c("example") : _vm._e(),
       _vm._v(" "),
@@ -84283,7 +84285,33 @@ Vue.component('home', __webpack_require__(/*! ./views/Home.vue */ "./resources/j
  */
 
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+  mounted: function mounted() {
+    this.info();
+  },
+  data: function data() {
+    return {
+      user: [],
+      planta: []
+    };
+  },
+  methods: {
+    info: function info() {
+      var _this = this;
+
+      axios.get('info').then(function (response) {
+        _this.user = response.data.user;
+        _this.planta = response.data.user.planta;
+        console.log(_this.user);
+        console.log(_this.planta);
+      });
+    },
+    logout: function logout() {
+      axios.post('logout').then(function (response) {
+        window.location.href = '/';
+      });
+    }
+  }
 });
 
 /***/ }),

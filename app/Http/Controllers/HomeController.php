@@ -24,23 +24,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-         $planta = $user->planta;
-         if ($user->isadmin === 'true') {
-            $planta = 'administrador';
-                return view('home ',compact('user','planta'));
-         }
-            return view('home ',compact('user','planta'));
+
+        return view('home');
     }
 
+    public function info()
+    {
 
-    public function Info(){
+      $user = Auth::user();
+      $user->planta;
+      return response()->json(['user'=>$user],200);
 
-
-        if ($user->isadmin === 'true') {
-             return response()->json(['user'=>$user,'admin'=>'administrador'],200);
-        }
-        $planta = $user->planta;
-        return response()->json(['user'=>$user,'planta'=>$planta],200);
     }
+
 }

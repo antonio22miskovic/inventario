@@ -34,4 +34,38 @@ Vue.component('home', require('./views/Home.vue').default);
 
 const app = new Vue({
     el: '#app',
+    mounted() {
+
+    		this.info();
+
+		},
+
+    data(){
+    	return{
+    		user:[],
+    		planta:[],
+    	}
+    },
+    methods:{
+    	info(){
+				axios.get('info')
+				.then(response =>{
+
+					this.user = response.data.user;
+					this.planta = response.data.user.planta;
+					console.log(this.user)
+					console.log(this.planta)
+				});
+			},
+
+				logout(){
+
+				axios.post('logout')
+				.then(response =>{
+				window.location.href = '/';
+
+				});
+
+			},
+    },
 });

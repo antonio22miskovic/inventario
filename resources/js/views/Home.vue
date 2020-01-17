@@ -1,10 +1,16 @@
 <template>
-	<b-container>
-		<b-container class="text-center p-2">
-			<button class="btn btn-primary sm-auto" @click="cambiar">{{ this.button }}</button>
-		</b-container>
-		<example v-if="registrar === true"></example>
-		<ListadoEquipos v-if=" listado === true"></ListadoEquipos>
+
+	<b-container class="text-center ">
+
+    	<button class="btn btn-primary sm-auto" @click="cambiar">{{ this.button }}</button>
+
+
+
+    <example v-if="registrar === true"></example>
+
+    <ListadoEquipos v-if=" listado === true"></ListadoEquipos>
+
+
 	</b-container>
 </template>
 <script>
@@ -12,7 +18,6 @@
 import ListadoEquipos from '../components/ListadoEquipos.vue'
 import example from '../components/ExampleComponent.vue'
 	export default{
-
 
 		components:{
 			example,
@@ -26,6 +31,7 @@ import example from '../components/ExampleComponent.vue'
 				listado:false,
 				registrar:true,
 				button: 'listado de equipos averiados',
+
 
 			}
 		},
@@ -46,6 +52,7 @@ import example from '../components/ExampleComponent.vue'
 						this.button = 'registrar un nuevo equipo averiado';
 				}
 			},
+
 
 
 		},
