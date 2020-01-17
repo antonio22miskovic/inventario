@@ -2398,6 +2398,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2407,23 +2456,43 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      user: [],
+      planta: [],
       listado: false,
       registrar: true,
-      button: 'listado de equipos averiados'
+      button: 'listado'
     };
   },
   methods: {
+    info: function info() {
+      var _this = this;
+
+      axios.get('info').then(function (response) {
+        _this.user = response.data.user;
+        _this.planta = response.data.user.planta;
+        console.log(_this.user);
+        console.log(_this.planta);
+      });
+    },
+    logout: function logout() {
+      axios.post('logout').then(function (response) {
+        window.location.href = '/';
+      });
+    },
     cambiar: function cambiar() {
       if (this.listado === true && this.registrar === false) {
         this.listado = false;
         this.registrar = true;
-        this.button = 'listado de equipos averiados';
+        this.button = 'listado';
       } else {
         this.listado = true;
         this.registrar = false;
-        this.button = 'registrar un nuevo equipo averiado';
+        this.button = 'registrar';
       }
     }
+  },
+  mounted: function mounted() {
+    this.info();
   }
 });
 
@@ -72059,24 +72128,197 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "b-container",
-    { staticClass: "text-center " },
-    [
+  return _c("div", {}, [
+    _c(
+      "nav",
+      { staticClass: "navbar navbar-expand-lg navbar-dark bg-dark static-top" },
+      [
+        _c("div", { staticClass: "container" }, [
+          _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
+            _vm._v(" " + _vm._s(this.planta.planta))
+          ]),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "collapse navbar-collapse",
+              attrs: { id: "navbarResponsive" }
+            },
+            [
+              _c("ul", { staticClass: "navbar-nav ml-auto" }, [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("li", { staticClass: "nav-item" }, [
+                  _c(
+                    "a",
+                    { staticClass: "nav-link", on: { click: _vm.cambiar } },
+                    [_vm._v(_vm._s(this.button))]
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._m(2),
+                _vm._v(" "),
+                _c("li", { staticClass: "nav-item" }, [
+                  _c(
+                    "a",
+                    { staticClass: "nav-link", on: { click: _vm.logout } },
+                    [_vm._v("logout")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "info",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalCenterTitle",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c(
+                  "h5",
+                  {
+                    staticClass: "modal-title ",
+                    attrs: { id: "exampleModalCenterTitle" }
+                  },
+                  [_vm._v("nombre de la planta: " + _vm._s(this.planta.planta))]
+                ),
+                _vm._v(" "),
+                _vm._m(3)
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("div", [
+                  _c("h5", [
+                    _vm._v("localidad: " + _vm._s(this.planta.localidad) + " ")
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(" descripcion:  " + _vm._s(this.planta.descripcion))
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _vm._m(4)
+            ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "row p-3" },
+      [
+        _vm.registrar === true ? _c("example") : _vm._e(),
+        _vm._v(" "),
+        _vm.listado === true ? _c("ListadoEquipos") : _vm._e()
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "navbar-toggler",
+        attrs: {
+          type: "button",
+          "data-toggle": "collapse",
+          "data-target": "#navbarResponsive",
+          "aria-controls": "navbarResponsive",
+          "aria-expanded": "false",
+          "aria-label": "Toggle navigation"
+        }
+      },
+      [_c("span", { staticClass: "navbar-toggler-icon" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item active" }, [
+      _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
+        _vm._v("Home\n              \t\t\t\t\t"),
+        _c("span", { staticClass: "sr-only" }, [_vm._v("(current)")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c(
+        "a",
+        {
+          staticClass: "nav-link",
+          attrs: { "data-toggle": "modal", "data-target": "#info" }
+        },
+        [_vm._v("info")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
       _c(
         "button",
-        { staticClass: "btn btn-primary sm-auto", on: { click: _vm.cambiar } },
-        [_vm._v(_vm._s(this.button))]
-      ),
-      _vm._v(" "),
-      _vm.registrar === true ? _c("example") : _vm._e(),
-      _vm._v(" "),
-      _vm.listado === true ? _c("ListadoEquipos") : _vm._e()
-    ],
-    1
-  )
-}
-var staticRenderFns = []
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -84249,69 +84491,28 @@ module.exports = function(module) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var bootstrap_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap-vue */ "./node_modules/bootstrap-vue/esm/index.js");
-/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ "./node_modules/bootstrap/dist/css/bootstrap.css");
-/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! bootstrap-vue/dist/bootstrap-vue.css */ "./node_modules/bootstrap-vue/dist/bootstrap-vue.css");
-/* harmony import */ var bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_3__);
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
+/* harmony import */ var bootstrap_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap-vue */ "./node_modules/bootstrap-vue/esm/index.js");
+/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ "./node_modules/bootstrap/dist/css/bootstrap.css");
+/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! bootstrap-vue/dist/bootstrap-vue.css */ "./node_modules/bootstrap-vue/dist/bootstrap-vue.css");
+/* harmony import */ var bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_2__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-Vue.prototype.$http = window.axios;
- //boostrap-vu
+Vue.prototype.$http = window.axios; //boostrap-vu
 
  // Install BootstrapVue
 
-Vue.use(bootstrap_vue__WEBPACK_IMPORTED_MODULE_1__["default"]); // Optionally install the BootstrapVue icon components plugin
+Vue.use(bootstrap_vue__WEBPACK_IMPORTED_MODULE_0__["default"]); // Optionally install the BootstrapVue icon components plugin
 
 
-Vue.use(bootstrap_vue__WEBPACK_IMPORTED_MODULE_1__["default"]);
+Vue.use(bootstrap_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
- // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 Vue.component('home', __webpack_require__(/*! ./views/Home.vue */ "./resources/js/views/Home.vue")["default"]);
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
 var app = new Vue({
-  el: '#app',
-  mounted: function mounted() {
-    this.info();
-  },
-  data: function data() {
-    return {
-      user: [],
-      planta: []
-    };
-  },
-  methods: {
-    info: function info() {
-      var _this = this;
-
-      axios.get('info').then(function (response) {
-        _this.user = response.data.user;
-        _this.planta = response.data.user.planta;
-        console.log(_this.user);
-        console.log(_this.planta);
-      });
-    },
-    logout: function logout() {
-      axios.post('logout').then(function (response) {
-        window.location.href = '/';
-      });
-    }
-  }
+  el: '#app'
 });
 
 /***/ }),
