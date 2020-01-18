@@ -121,9 +121,9 @@
       <th scope="col">modelo</th>
       <th scope="col">marca</th>
        <th scope="col">codigo</th>
-        <th scope="col" class="text-center">editar equipo</th>
-        <th scope="col" class="text-center">eliminar el equipo</th>
-         <th scope="col" class="text-center">detalles</th>
+        <th scope="col" class="text-center">editar</th>
+        <th scope="col" class="text-center">eliminar</th>
+         <th scope="col" class="text-center">ver</th>
     </tr>
   </thead>
   <tbody>
@@ -254,7 +254,7 @@ import Swal from 'sweetalert2'
         this.listado(this.paginate.current_page);
 
         Swal.fire({
-        position: 'top-end',
+        position: 'center',
         icon: 'success',
         title: ' se ah actualizado con exito',
         showConfirmButton: false,
