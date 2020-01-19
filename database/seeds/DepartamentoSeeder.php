@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Equipo;
+use App\Departamento;
 
-class EquipoTableSeeder extends Seeder
+
+class DepartamentoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +13,6 @@ class EquipoTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Equipo::class,500)->create();
+        factory(Departamento::class,100)->create();
     }
 }

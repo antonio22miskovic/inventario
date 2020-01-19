@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Planta;
 use App\Categoria;
+use App\Departamento;
 
 class Equipo extends Model
 {
@@ -17,13 +18,13 @@ class Equipo extends Model
     	'marca',
     	'codigo',
     	'descripcion',
-        'planta_id',
+        'departamento_id',
         'categoria_id'
 
     ];
 
-    public function planta(){
-        return $this->belongsTo(Planta::class);
+    public function departamento(){
+        return $this->belongsTo(Departamento::class);
     }
 
     public function categoria(){

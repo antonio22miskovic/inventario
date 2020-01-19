@@ -13,7 +13,8 @@ class EquipoController extends Controller
     {
         $user = Auth::user();
         $planta = $user->planta;
-        $equipo = Equipo::orderBy('id', 'desc')->where('planta_id',$planta->id)->paginate(5);
+        $departamento = $planta->departamento;
+        $equipo = Equipo::orderBy('id', 'desc')->where('departamento_id',1)->paginate(5);
 
         return [
 

@@ -12,4 +12,5 @@ Route::resource('user', 'UserController');
 Route::resource('planta', 'PlantaController');
 Route::resource('categoria', 'CategoriaController');
 Route::resource('equipo', 'EquipoController');
+Route::resource('departamento', 'DepartamentoController');
 

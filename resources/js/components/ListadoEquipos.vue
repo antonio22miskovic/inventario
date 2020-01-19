@@ -2,7 +2,6 @@
 	<b-container>
 
     <div>
-
         <div class="modal fade" id="detallesmodalcenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
@@ -113,55 +112,58 @@
 
 
 
-		<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">nombre</th>
-      <th scope="col">modelo</th>
-      <th scope="col">marca</th>
-       <th scope="col">codigo</th>
-        <th scope="col" class="text-center">editar</th>
-        <th scope="col" class="text-center">eliminar</th>
-         <th scope="col" class="text-center">ver</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr v-for="equipo of equipos" :key="equipo.id">
-      <th scope="row"> {{ equipo.id }}</th>
-      <td>t{{ equipo.nombre }}</td>
-      <td>{{ equipo.modelo }}</td>
-      <td>{{ equipo.marca }}</td>
-       <td>{{ equipo.codigo }}</td>
-         <td class="text-center"> <button class="btn btn-primary text-center" data-toggle="modal" data-target="#editar"  @click.prevent="editar(equipo, paginate.current_page)"> editar </button></td>
-           <td class="text-center"><button class="btn btn-danger text-center"  @click.prevent="eliminar(equipo, paginate.current_page)">eliminar</button></td>
-            <td class="text-center"> <button class="btn btn-primary text-center" data-toggle="modal" data-target="#detallesmodalcenter" @click.prevent="detalles(equipo)"> detalles </button></td>
-    </tr>
+	     <table class="table">
+          <thead class="thead-dark">
+            <tr>
 
-  </tbody>
-</table>
+                <th scope="col">#</th>
+                <th scope="col">nombre</th>
+                <th scope="col">modelo</th>
+                <th scope="col">marca</th>
+                <th scope="col">codigo</th>
+                <th scope="col" class="text-center">editar</th>
+                <th scope="col" class="text-center">eliminar</th>
+                <th scope="col" class="text-center">ver</th>
 
-<nav aria-label="Page navigation example" >
-  <ul class="pagination ">
-    <li class="page-item" v-if="paginate.current_page > 1" >
-      <a class="page-link" href="#" aria-label="Previous" @click.prevent = "Chagepage( paginate.current_page - 1)">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li >
+            </tr>
+          </thead>
+          <tbody>
+            <p v-if="equipos === 0"> no hay equipos registrados</p>
+            <tr v-for="equipo of equipos" :key="equipo.id">
+              <th scope="row"> {{ equipo.id }}</th>
+              <td>t{{ equipo.nombre }}</td>
+              <td>{{ equipo.modelo }}</td>
+              <td>{{ equipo.marca }}</td>
+              <td>{{ equipo.codigo }}</td>
+              <td class="text-center"> <button class="btn btn-primary text-center" data-toggle="modal" data-target="#editar"  @click.prevent="editar(equipo, paginate.current_page)"> editar </button></td>
+              <td class="text-center"><button class="btn btn-danger text-center"  @click.prevent="eliminar(equipo, paginate.current_page)">eliminar</button></td>
+              <td class="text-center"> <button class="btn btn-primary text-center" data-toggle="modal" data-target="#detallesmodalcenter" @click.prevent="detalles(equipo)"> detalles </button></td>
+            </tr>
 
-    <li class="page-item" v-for="page in nuPages" :class="[page == esActivo ? 'active' : '']">
+          </tbody>
+      </table>
 
-    	<a class="page-link" href="#"@click.prevent = "Chagepage( page)" >{{ page }}</a>
+      <nav aria-label="Page navigation example" >
+          <ul class="pagination ">
+            <li class="page-item" v-if="paginate.current_page > 1" >
+                <a class="page-link" href="#" aria-label="Previous" @click.prevent = "Chagepage( paginate.current_page - 1)">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li >
 
-    </li>
+            <li class="page-item" v-for="page in nuPages" :class="[page == esActivo ? 'active' : '']">
 
-    <li class="page-item" v-if="paginate.current_page  < paginate.last_page">
-       <a class="page-link" href="#" aria-label="Previous" @click.prevent = "Chagepage( paginate.current_page + 1)">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
+    	         <a class="page-link" href="#"@click.prevent = "Chagepage( page)" >{{ page }}</a>
+
+            </li>
+
+            <li class="page-item" v-if="paginate.current_page  < paginate.last_page">
+                <a class="page-link" href="#" aria-label="Previous" @click.prevent = "Chagepage( paginate.current_page + 1)">
+                      <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+          </ul>
+      </nav>
 	</b-container>
 </template>
 <script>

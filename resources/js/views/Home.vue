@@ -9,11 +9,7 @@
       				</button>
       			<div class="collapse navbar-collapse" id="navbarResponsive">
         			<ul class="navbar-nav ml-auto">
-          				<li class="nav-item active">
-           					 <a class="nav-link" href="#">Home
-              					<span class="sr-only">(current)</span>
-            				</a>
-          				</li>
+
           				<li class="nav-item">
             				<a class="nav-link" v-on:click="cambiar">{{ this.button }}</a>
           				</li>
@@ -53,6 +49,7 @@
 
                  		<h5>localidad: {{ this.planta.localidad}} </h5>
                   		<p> descripcion:  {{ this.planta.descripcion }}</p>
+                      <p> rif:  {{ this.planta.rif}}</p>
 
                 	</div>
                 </div>
@@ -103,9 +100,9 @@
 
     <div class="row p-3">
 
-    	<example v-if="registrar === true"></example>
+    	<!-- <example ></example> -->
     	<ListadoEquipos v-if="listado === true"></ListadoEquipos>
-
+      <departamento v-if="registrar === true"></departamento>
 
     </div>
 
@@ -113,13 +110,14 @@
 </template>
 <script>
 import Swal from 'sweetalert2'
-import ListadoEquipos from '../components/ListadoEquipos.vue'
-import example from '../components/ExampleComponent.vue'
+import departamento from '../components/ListadoEquipos.vue'
+import ListadoEquipos from '../components/Departamento.vue'
+// import example from '../components/ExampleComponent.vue'
 	export default{
 
 		components:{
-			example,
-
+			// example,
+      departamento,
 			ListadoEquipos
 		},
 
@@ -137,8 +135,9 @@ import example from '../components/ExampleComponent.vue'
     			planta:[],
 				listado:false,
 				registrar:true,
+        depa: false,
 
-				button: 'listado',
+				button: 'departamentos',
 				categoria:[{
                     'categoria':'',
                     'descripcion':''
@@ -155,8 +154,7 @@ import example from '../components/ExampleComponent.vue'
 				.then(response =>{
 					this.user = response.data.user;
 					this.planta = response.data.user.planta;
-					console.log(this.user)
-					console.log(this.planta)
+
 				});
 			},
 
@@ -176,12 +174,12 @@ import example from '../components/ExampleComponent.vue'
 
 						this.listado = false;
 						this.registrar = true;
-						this.button = 'listado';
+						this.button = 'departamentos';
 				}else{
 
 						this.listado = true;
 						this.registrar = false;
-						this.button = 'registrar';
+						this.button = 'equipos';
 				}
 			},
 
@@ -222,6 +220,11 @@ import example from '../components/ExampleComponent.vue'
                             console.log('Error', error.message);
                      }
                  });
+            },
+            departcomponent(){
+
+
+
             }
 
 		},

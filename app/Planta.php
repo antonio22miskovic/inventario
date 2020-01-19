@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Equipo;
+use App\Departamento;
 
 class Planta extends Model
 {
@@ -15,6 +16,7 @@ class Planta extends Model
     	'planta',
     	'descripcion',
     	'localidad',
+        'rif'
 
     ];
 
@@ -29,8 +31,8 @@ class Planta extends Model
     }
 
         // de uno a muchos con equipos
-    public function equipos(){
+    public function departamentos(){
 
-        return $this->hasMany(Equipo::class);
+        return $this->hasMany(Departamento::class);
     }
 }

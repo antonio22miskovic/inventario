@@ -18,6 +18,7 @@ class CreatePlantasTable extends Migration
             $table->string('planta');
             $table->text('descripcion');
             $table->string('localidad');
+            $table->string('rif')->unique();
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
