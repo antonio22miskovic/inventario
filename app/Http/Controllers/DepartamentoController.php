@@ -50,8 +50,8 @@ class DepartamentoController extends Controller
 
         Departamento::create([
 
-            'Departamentos' => $Request['departamento'],
-            'descripcion' => $Request['descripcion'],
+            'departamento' => $request['departamento'],
+            'descripcion' => $request['descripcion'],
             'planta_id' => $planta->id
 
         ]);

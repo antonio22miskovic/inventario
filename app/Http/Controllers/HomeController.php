@@ -37,4 +37,14 @@ class HomeController extends Controller
 
     }
 
+    public function select(){
+
+         $user = Auth::user();
+         $planta = $user->planta;
+            $departamentos = $planta->departamentos;
+
+            return response()->json(['depa'=>$departamentos],200);
+
+    }
+
 }

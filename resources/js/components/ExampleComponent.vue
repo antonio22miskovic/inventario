@@ -1,11 +1,6 @@
 <template>
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                    <div class="container">
-                         <div class="row">
-                              <div class="col-md-12">
-                                 <div class="well well-sm">
+
                                       <form class="form-horizontal" @submit.prevent="registrar">
                                          <fieldset>
                                              <legend class="text-center header">registra el equipo averiado</legend>
@@ -38,6 +33,19 @@
                                                  </div>
                                             </div>
 
+                                            <div class="form-group">
+                                                <span class="col-md-1 col-md-offset-2 text-center"><label>departamento</label></span>
+                                                <div class="col justify-content-center">
+                                                    <select  id="categoria"
+                                                     v-model="datos.departamento"
+                                                      class="form-control rounded-pill">
+                                                         <option v-for="departamento of departamentos" :key="departamento.id" :value="departamento.id"> {{
+                                                         departamento.departamento }}</option>
+                                                    </select>
+                                                 </div>
+                                            </div>
+
+
                                              <div class="form-group">
                                                 <span class="col-md-1 col-md-offset-2 text-center"><label>categoria</label></span>
                                                 <div class="col justify-content-center">
@@ -45,7 +53,6 @@
                                                      v-model="datos.categoria"
                                                      name="categoria"
                                                       class="form-control rounded-pill">
-                                                         <option> seleccione la categoria del equipo </option>
                                                          <option v-for="valor of valores" :key="valor.id" :value="valor.id"> {{
                                                          valor.categoria }}</option>
                                                     </select>
@@ -67,13 +74,6 @@
                                         </fieldset>
                                      </form>
                                 </div>
-                            </div>
-                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 </template>
 
@@ -85,7 +85,7 @@ import Swal from 'sweetalert2'
             return{
 
                 valores:[],
-
+                departamentos:[],
                 datos:[{
                 'nombre':'',
                 'modelo':'',
@@ -93,6 +93,7 @@ import Swal from 'sweetalert2'
                 'codigo':'',
                 'descripcion':'',
                 'categoria': '',
+                'departamento':'',
                 }],
 
                 button: 'agrega una nueva categoria',
@@ -106,6 +107,7 @@ import Swal from 'sweetalert2'
         mounted(){
 
             this.listar();
+            this.depa();
         },
 
 
@@ -119,6 +121,16 @@ import Swal from 'sweetalert2'
                 })
             },
 
+              depa(){
+
+                axios.get('select')
+                .then((response) => {
+                this.departamentos = response.data.depa;
+
+             })
+
+            },
+
             registrar(){
                 const data = {
                     'nombre': this.datos.nombre,
@@ -127,6 +139,7 @@ import Swal from 'sweetalert2'
                     'codigo': this.datos.codigo,
                     'descripcion': this.datos.descripcion,
                     'categoria': this.datos.categoria,
+                    'departamento': this.datos.departamento
                 };
 
             axios.post('equipo', data)
@@ -138,6 +151,7 @@ import Swal from 'sweetalert2'
                     this.datos.codigo = '';
                     this.datos.descripcion = '';
                     this.datos.categoria  = '';
+                    this.datos.departamento = '';
 
                  Swal.fire({
                 position: 'center',

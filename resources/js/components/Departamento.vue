@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="container">
 
 		<div>
         <div class="modal fade" id="detallesmodalcenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -71,14 +71,56 @@
             </div>
         </div>
 
+        <div>
+      <div class="modal fade" id="registrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+           <div class="modal-content">
+                <div class="modal-header">
+                   <h5 class="modal-title text-center " id="exampleModalCenterTitle">registra el departamento</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                      </button>
+                </div>
+                <div class="modal-body">
+                      <form class="form-horizontal" @submit.prevent="registrar()">
+                        <fieldset>
+                            <legend class="text-center header">actualizar los datos del departamento</legend>
+
+                          <div class="form-group">
+                              <span class="col-md-1 col-md-offset-2 text-center"><label>departamento</label></span>
+                              <div class="col justify-content-center">
+                                  <input id="departamento" v-model="datos.departamento" name="departamento" type="text" placeholder="departamento del equipo averiado" class="form-control rounded-pill">
+                              </div>
+                            </div>
+
+                              <div class="form-group">
+                                  <span class="col-md-1 col-md-offset-2 text-center"><label>descripcion</label></span>
+                                  <div class="col justify-content-center">
+                                      <textarea class="form-control " v-model="datos.descripcion" id="descripcion" name="descripcion" placeholder="descripcion del equipo averiado" rows="7"></textarea>
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-12 text-center">
+                                        <button type="submit" class="btn btn-primary btn-lg rounded-pill">registrar</button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                          </form>
+
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
          <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-14 p-4">
+              <p>desea anadir un nuevo departamento: <a class="btn btn-success" data-toggle="modal" data-target="#registrar"> + </a> </p>
 					<table class="table">
          			 	<thead class="thead-dark">
            					<tr>
 
-                				<th scope="col">#</th>
                 				<th scope="col">departamento</th>
                 				<th scope="col" class="text-center">editar</th>
                 				<th scope="col" class="text-center">eliminar</th>
@@ -91,7 +133,6 @@
 
             				<tr v-for="departamento of departamentos" :key="departamento.id">
 
-              					<th scope="row"> {{ departamento.id }}</th>
               					<td>t{{ departamento.departamento }}</td>
 
               					<td class="text-center"> <button class="btn btn-primary text-center" data-toggle="modal" data-target="#editar"  @click.prevent="editar(departamento, paginate.current_page)"> editar </button></td>
@@ -127,8 +168,6 @@
 
   				</div>
 			</div>
-		</div>
-
 	</div>
 </template>
 <script>
@@ -156,6 +195,13 @@ export default{
                 'descripcion':'',
 
       },
+
+      datos:[{
+
+                'departamento': '',
+                 'descripcion':'',
+
+      }],
 
   		paginate:{
 
@@ -188,20 +234,47 @@ export default{
   })
 
     },
+    registrar(){
+          const data = {
+
+                  'departamento':this.datos.departamento,
+                 'descripcion':this.datos.descripcion,
+
+                };
+
+     axios.post('departamento',data)
+     .then((response) =>{
+
+      this.datos.departamento = '';
+      this.datos.departamento = '';
+      this.listado();
+
+        Swal.fire({
+
+                position: 'center',
+                 icon: 'success',
+                title: 'añadido el departamento con exito',
+                showConfirmButton: false,
+
+                })
+
+     });
+
+    },
 
     editar(departamento, page){
 
       this.filldepartamento.id = departamento.id;
       this.filldepartamento.departamento = departamento.departamento;
       this.filldepartamento.descripcion = departamento.descripcion;
-      console.log(this.filldepartamento)
-     },
+
+         },
 
     update(id){
 
       axios.put('departamento/'+id, this.filldepartamento).
       then(response =>{
-      	console.log(this.filldepartamento)
+
         this.listado(this.paginate.current_page);
 
         Swal.fire({
@@ -250,8 +323,6 @@ export default{
       .then(res=>{
 
        this.detalle = res.data.datos;
-       console.log(this.detalle)
-
 
        })
 

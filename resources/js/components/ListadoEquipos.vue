@@ -17,11 +17,32 @@
                   <p> marca:  {{ this.detalle.marca }}</p>
                   <p> modelo:  {{ this.detalle.modelo}}</p>
                   <p> descripcion:  {{ this.detalle.descripcion}}</p>
+
                   <h5> categoria del equipo </h5>
                   <p> categoria:  {{ this.categoria.categoria }}</p>
                   <p> descripcion de la categoria:  {{ this.categoria.descripcion}}</p>
                 </div>
               </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+        <div class="modal fade" id="registrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                   <h5 class="modal-title " id="exampleModalCenterTitle"> registra un nuevo equipo </h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                      </button>
+                </div>
+              <div class="modal-body">
+                <example></example>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
@@ -50,30 +71,43 @@
                           <div class="form-group">
                               <span class="col-md-1 col-md-offset-2 text-center"><label>nombre</label></span>
                               <div class="col justify-content-center">
-                                  <input id="nombre" v-model="fillequipo.nombre" name="nombre" type="text" placeholder="nombre del equipo averiado" class="form-control">
+                                  <input id="nombre" v-model="fillequipo.nombre" name="nombre" type="text" placeholder="nombre del equipo averiado" class="form-control rounded-pill">
                               </div>
                             </div>
 
                             <div class="form-group">
                                 <span class="col-md-1 col-md-offset-2 text-center"><label>modelo</label></span>
                                 <div class="col justify-content-center">
-                                    <input id="modelo" v-model="fillequipo.modelo" name="modelo" type="text" placeholder="modelo del equipo" class="form-control">
+                                    <input id="modelo" v-model="fillequipo.modelo" name="modelo" type="text" placeholder="modelo del equipo" class="form-control rounded-pill">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <span class="col-md-1 col-md-offset-2 text-center"><label>marca</label></span>
                                 <div class="col justify-content-center">
-                                    <input id="marca" v-model="fillequipo.marca" name="marca" type="text" placeholder="marca del equipo" class="form-control">
+                                    <input id="marca" v-model="fillequipo.marca" name="marca" type="text" placeholder="marca del equipo" class="form-control rounded-pill">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <span class="col-md-1 col-md-offset-2 text-center"><label>codigo</label></span>
                                 <div class="col justify-content-center">
-                                    <input id="codigo" v-model="fillequipo.codigo" name="codigo" type="text" placeholder="codigo del equipo" class="form-control">
+                                    <input id="codigo" v-model="fillequipo.codigo" name="codigo" type="text" placeholder="codigo del equipo" class="form-control rounded-pill">
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><label> departamento</label></span>
+                                <div class="col justify-content-center">
+                                  <select  id="categoria"
+                                  v-model="fillequipo.departamento"
+                                  class="form-control rounded-pill">
+
+                                     <option v-for="departamento of departamentos" :key="departamento.id" :value="departamento.id"> {{departamento.departamento }}</option>
+                                  </select>
+                                </div>
+                              </div>
+
 
                             <div class="form-group">
                                 <span class="col-md-1 col-md-offset-2 text-center"><label>categoria</label></span>
@@ -81,8 +115,8 @@
                                   <select  id="categoria"
                                   v-model="fillequipo.categoria"
                                   name="categoria"
-                                  class="form-control">
-                                     <option> seleccione la categoria del equipo </option>
+                                  class="form-control rounded-pill">
+
                                      <option v-for="valor of valores" :key="valor.id" :value="valor.id"> {{valor.categoria }}</option>
                                   </select>
                                 </div>
@@ -97,7 +131,7 @@
 
                                 <div class="form-group">
                                     <div class="col-md-12 text-center">
-                                        <button type="submit" class="btn btn-primary btn-lg">registrar</button>
+                                        <button type="submit" class="btn btn-primary btn-lg rounded-pill">actualizar</button>
                                     </div>
                                 </div>
                             </fieldset>
@@ -111,15 +145,43 @@
 
 
 
+        <div class="container">
+
+          <p>desea anadir un nuevo equipo: <a class="btn btn-success" data-toggle="modal" data-target="#registrar"> + </a> </p>
+          <form @submit.prevent="buscar()">
+                <div class="form-group">
+
+                    <span class="col-md-1 col-md-offset-2 text-center"><label>seleccione un departamento para la busqueda</label></span>
+                      <div class="col justify-content-center">
+                          <select id="categoria"
+                                  v-model="depa"
+                                  name="categoria"
+                                  class="form-control">
+                            <option v-for=" departamento of  departamentos" :key=" departamento.id" :value="departamento.id"> {{ departamento.departamento }}</option>
+                          </select>
+                          <div class=" text-center">
+                             <button class="btn btn-primary m-3" type="submit"> buscar </button>
+                          </div>
+                      </div>
+                  </div>
+          </form>
+
+            <p class="text-center"> {{ this.mensaje }} </p>
+
+
+
+          <div class="alert alert-success alert-dismissible fade show" role="alert" v-if="equipos.length === 0" >
+            <strong> mensaje !</strong> debe selecionar un departamento para la busqueda del equipo averiado
+
+        </div>
+
+        <div v-else>
 
 	     <table class="table">
           <thead class="thead-dark">
             <tr>
 
-                <th scope="col">#</th>
                 <th scope="col">nombre</th>
-                <th scope="col">modelo</th>
-                <th scope="col">marca</th>
                 <th scope="col">codigo</th>
                 <th scope="col" class="text-center">editar</th>
                 <th scope="col" class="text-center">eliminar</th>
@@ -128,12 +190,9 @@
             </tr>
           </thead>
           <tbody>
-            <p v-if="equipos === 0"> no hay equipos registrados</p>
             <tr v-for="equipo of equipos" :key="equipo.id">
-              <th scope="row"> {{ equipo.id }}</th>
+
               <td>t{{ equipo.nombre }}</td>
-              <td>{{ equipo.modelo }}</td>
-              <td>{{ equipo.marca }}</td>
               <td>{{ equipo.codigo }}</td>
               <td class="text-center"> <button class="btn btn-primary text-center" data-toggle="modal" data-target="#editar"  @click.prevent="editar(equipo, paginate.current_page)"> editar </button></td>
               <td class="text-center"><button class="btn btn-danger text-center"  @click.prevent="eliminar(equipo, paginate.current_page)">eliminar</button></td>
@@ -149,7 +208,7 @@
                 <a class="page-link" href="#" aria-label="Previous" @click.prevent = "Chagepage( paginate.current_page - 1)">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
-            </li >
+            </li>
 
             <li class="page-item" v-for="page in nuPages" :class="[page == esActivo ? 'active' : '']">
 
@@ -164,16 +223,20 @@
             </li>
           </ul>
       </nav>
+    </div>
+    </div>
 	</b-container>
 </template>
 <script>
 import Swal from 'sweetalert2'
+import example from '../components/ExampleComponent.vue'
+
 	export default{
 
 		name:'ListadoEquipos',
 
 		components:{
-
+       example,
 		},
 
 
@@ -181,10 +244,14 @@ import Swal from 'sweetalert2'
     return {
 
   		equipos:[],
-
+      mensaje:'',
       detalle:[],
-
+      inicio: 'debe selecionar un departamento para la busqueda del equipo averiado',
       valores:[],
+
+      departamentos:[],
+
+      depa:'',
 
       fillequipo:{
                 'id': '',
@@ -194,6 +261,7 @@ import Swal from 'sweetalert2'
                 'codigo':'',
                 'descripcion':'',
                 'categoria': '',
+                'departamento':'',
 
       },
 
@@ -224,8 +292,9 @@ import Swal from 'sweetalert2'
 
     listado(page){
 
-        var url = 'equipo?page='+page;
+        var url = 'equipo/listado/'+ this.depa +'?page='+page;
         axios.get(url).then(res=>{
+
         this.equipos=res.data.equipo.data;
         this.paginate = res.data.paginate;
   })
@@ -233,13 +302,15 @@ import Swal from 'sweetalert2'
     },
 
     editar(equipo, page){
+
       this.fillequipo.id = equipo.id;
       this.fillequipo.nombre = equipo.nombre;
       this.fillequipo.modelo = equipo.modelo;
       this.fillequipo.marca = equipo.marca;
       this.fillequipo.codigo = equipo.codigo;
       this.fillequipo.descripcion = equipo.descripcion;
-      this.fillequipo.categoria = equipo.categoria_id
+      this.fillequipo.categoria = equipo.categoria_id;
+      this.fillequipo.departamento = equipo.departamento_id;
 
       axios.get('categoria')
              .then((response) => {
@@ -265,6 +336,30 @@ import Swal from 'sweetalert2'
 
       })
 
+    },
+
+    select(){
+
+      axios.get('select')
+             .then((response) => {
+            this.departamentos = response.data.depa;
+
+             })
+
+
+    },
+
+    buscar(){
+       if (this.depa.length === 0) {
+
+             this.mensaje = 'seleccione un departamento';
+
+        }else{
+
+           this.mensaje = '';
+
+          this.listado(1)
+        }
     },
 
     eliminar(equipo, page){
@@ -303,11 +398,7 @@ import Swal from 'sweetalert2'
        this.detalle = res.data.equipo;
        this.categoria = res.data.equipo.categoria;
 
-
        })
-
-
-
 
     },
 
@@ -315,12 +406,11 @@ import Swal from 'sweetalert2'
 
   mounted() {
 
-    this.listado(1);
+    this.select();
 
 },
 
 computed:{
-
 
 	esActivo: function(){
 			return this.paginate.current_page;

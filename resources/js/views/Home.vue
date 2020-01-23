@@ -100,7 +100,7 @@
 
     <div class="row p-3">
 
-    	<!-- <example ></example> -->
+
     	<ListadoEquipos v-if="listado === true"></ListadoEquipos>
       <departamento v-if="registrar === true"></departamento>
 
@@ -112,11 +112,11 @@
 import Swal from 'sweetalert2'
 import departamento from '../components/ListadoEquipos.vue'
 import ListadoEquipos from '../components/Departamento.vue'
-// import example from '../components/ExampleComponent.vue'
+
 	export default{
 
 		components:{
-			// example,
+
       departamento,
 			ListadoEquipos
 		},

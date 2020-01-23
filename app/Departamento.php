@@ -12,7 +12,7 @@ class Departamento extends Model
 
     protected $fillable =[
 
-    	'Departamento',
+    	'departamento',
     	'descripcion',
         'planta_id'
 

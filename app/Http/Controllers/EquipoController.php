@@ -9,12 +9,10 @@ use App\Http\Requests\EquipoRequest;
 class EquipoController extends Controller
 {
 
-    public function index(Request $request)
+    public function index(Request $request, $depa)
     {
-        $user = Auth::user();
-        $planta = $user->planta;
-        $departamento = $planta->departamento;
-        $equipo = Equipo::orderBy('id', 'desc')->where('departamento_id',1)->paginate(5);
+
+        $equipo = Equipo::orderBy('id', 'desc')->where('departamento_id',$depa)->paginate(5);
 
         return [
 
@@ -35,8 +33,7 @@ class EquipoController extends Controller
 
     public function store(EquipoRequest $request)
     {
-        $user = Auth::user();
-        $planta = $user->planta;
+
         Equipo::create([
 
             'nombre' => $request['nombre'],
@@ -44,7 +41,7 @@ class EquipoController extends Controller
             'marca' => $request['marca'],
             'codigo' => $request['codigo'],
             'descripcion' => $request['descripcion'],
-            'planta_id' => $planta->id,
+            'departamento_id' => $request['departamento'],
             'categoria_id' => $request['categoria']
 
         ]);
