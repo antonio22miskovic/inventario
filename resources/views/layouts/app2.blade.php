@@ -16,6 +16,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+     <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
+
 </head>
 <body>
         <main class="py-4">

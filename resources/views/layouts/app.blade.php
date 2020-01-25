@@ -19,10 +19,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
 
 </head>
-<body class="fondo">
+<body class="">
     <div id="app">
 
              @yield('content')
