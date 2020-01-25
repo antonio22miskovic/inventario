@@ -12,14 +12,14 @@
 
                     <input class="ee @error('email') is-invalid @enderror" type="email" name="email" placeholder="Correo" alue="{{ old('email') }}" required autocomplete="email" autofocus />
                          @error('email')
-                                    <span class="invalid-feedback" role="alert">
+                                    <span class="invalid-feedback text-center" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
 
                     <input class="ee @error('password') is-invalid @enderror" type="password" name="password" placeholder="Clave" required autocomplete="current-password"/>
                      @error('password')
-                                    <span class="invalid-feedback" role="alert">
+                                    <span class="invalid-feedback text-center" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror

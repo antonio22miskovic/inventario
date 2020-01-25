@@ -3,7 +3,7 @@
 
   		<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
    			 <div class="container">
-      			<a class="navbar-brand" href="#"> {{ this.planta.planta }}</a>
+      			<a class="navbar-brand" href="/home">  <font-awesome-icon icon="home" /> {{ this.planta.planta }}</a>
       				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         				<span class="navbar-toggler-icon"></span>
       				</button>
@@ -25,7 +25,7 @@
 
           				</li>
           				<li class="nav-item">
-            				<a class="nav-link" data-toggle="modal" data-target="#info">info</a>
+            				<a class="nav-link" data-toggle="modal" data-target="#info">  <font-awesome-icon icon="building" class="mr-2"/>info</a>
           				</li>
           				<li class="nav-item">
             				<a class="nav-link" v-on:click="logout">logout</a>
