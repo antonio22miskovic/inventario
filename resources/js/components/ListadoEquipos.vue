@@ -21,6 +21,9 @@
                   <h5> categoria del equipo </h5>
                   <p> categoria:  {{ this.categoria.categoria }}</p>
                   <p> descripcion de la categoria:  {{ this.categoria.descripcion}}</p>
+
+                  <h5> departamento: {{ this.depadetalles.departamento }}</h5>
+                  <p> descripcion del departamento: {{ this.depadetalles.descripcion }}</p>
                 </div>
               </div>
               <div class="modal-footer">
@@ -143,11 +146,27 @@
             </div>
         </div>
 
-
-
         <div class="container">
 
-          <p>desea anadir un nuevo equipo: <a class="btn btn-success" data-toggle="modal" data-target="#registrar"> + </a> </p>
+          <div class="container">
+          <div class="row">
+            <div class="col m-auto">
+               <p>desea anadir un nuevo equipo: <a class="btn btn-success" data-toggle="modal" data-target="#registrar"> + </a> </p>
+            </div>
+            <div class="col m-auto">
+              <div class="form-group">
+              <form @submit.prevent="filtro()">
+                <input type="text" name="codigo" v-model="filtrar" placeholder="introduce el codigo" class="form-control rounded-pill">
+                <button type="submit" class="btn btn-primary rounded-pill"> buscar </button>
+                <p v-if="validarfiltrado == 2"> no se ah encontrado el equipo averiado </p>
+                 <p v-if="validarfiltrado2 == 2"> debe introducir el codigo </p>
+              </form>
+              </div>
+            </div>
+
+          </div>
+          </div>
+
           <form @submit.prevent="buscar()">
                 <div class="form-group">
 
@@ -156,11 +175,11 @@
                           <select id="categoria"
                                   v-model="depa"
                                   name="categoria"
-                                  class="form-control">
+                                  class="form-control rounded-pill">
                             <option v-for=" departamento of  departamentos" :key=" departamento.id" :value="departamento.id"> {{ departamento.departamento }}</option>
                           </select>
                           <div class=" text-center">
-                             <button class="btn btn-primary m-3" type="submit"> buscar </button>
+                             <button class="btn btn-primary m-3 rounded-pill" type="submit"> buscar </button>
                           </div>
                       </div>
                   </div>
@@ -223,6 +242,7 @@
             </li>
           </ul>
       </nav>
+
     </div>
     </div>
 	</b-container>
@@ -243,6 +263,10 @@ import example from '../components/ExampleComponent.vue'
 		data() {
     return {
 
+      validarfiltrado: 1,
+      validarfiltrado2: 1,
+      depadetalles:[],
+      filtrar:'',
   		equipos:[],
       mensaje:'',
       detalle:[],
@@ -282,6 +306,39 @@ import example from '../components/ExampleComponent.vue'
   }
 },
   methods: {
+
+    filtro(){
+
+        this.mensaje = '';
+
+      if (this.filtrar.length === 0) {
+
+        this.validarfiltrado = 1;
+        this.validarfiltrado2 = 2;
+
+      }else{
+        this.validarfiltrado2 = 1;
+      let url = 'filtro/'+ this.filtrar;
+
+      axios.get(url).then((res) =>{
+
+         var e = res.data
+
+        if (e == 1) {
+
+            this.validarfiltrado = 2;
+
+        }else{
+            this.validarfiltrado2 = 1;
+            this.validarfiltrado = 1;
+          this.equipos = res.data;
+
+        }
+
+      })
+    }
+
+    },
 
   	Chagepage(page){
 
@@ -356,7 +413,10 @@ import example from '../components/ExampleComponent.vue'
 
         }else{
 
+            this.filtrar = '';
            this.mensaje = '';
+           this.validarfiltrado = 1;
+            this.validarfiltrado2 = 1;
 
           this.listado(1)
         }
@@ -397,6 +457,7 @@ import example from '../components/ExampleComponent.vue'
 
        this.detalle = res.data.equipo;
        this.categoria = res.data.equipo.categoria;
+      this.depadetalles = res.data.equipo.departamento;
 
        })
 

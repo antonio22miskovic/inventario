@@ -59,6 +59,7 @@ class EquipoController extends Controller
 
         $equipo->planta;
         $equipo->categoria;
+        $equipo->departamento;
 
         return response()->json(['equipo'=>$equipo],200);
     }

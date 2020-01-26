@@ -12330,6 +12330,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -12339,6 +12359,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      validarfiltrado: 1,
+      validarfiltrado2: 1,
+      depadetalles: [],
+      filtrar: '',
       equipos: [],
       mensaje: '',
       detalle: [],
@@ -12368,21 +12392,45 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    filtro: function filtro() {
+      var _this = this;
+
+      this.mensaje = '';
+
+      if (this.filtrar.length === 0) {
+        this.validarfiltrado = 1;
+        this.validarfiltrado2 = 2;
+      } else {
+        this.validarfiltrado2 = 1;
+        var url = 'filtro/' + this.filtrar;
+        axios.get(url).then(function (res) {
+          var e = res.data;
+
+          if (e == 1) {
+            _this.validarfiltrado = 2;
+          } else {
+            _this.validarfiltrado2 = 1;
+            _this.validarfiltrado = 1;
+            _this.equipos = res.data;
+          }
+        });
+      }
+    },
     Chagepage: function Chagepage(page) {
       this.paginate.current_page = page;
       this.listado(page);
     },
     listado: function listado(page) {
-      var _this = this;
+      var _this2 = this;
 
       var url = 'equipo/listado/' + this.depa + '?page=' + page;
       axios.get(url).then(function (res) {
-        _this.equipos = res.data.equipo.data;
-        _this.paginate = res.data.paginate;
+        _this2.equipos = res.data.equipo.data;
+        _this2.paginate = res.data.paginate;
       });
     },
     editar: function editar(equipo, page) {
-      var _this2 = this;
+      var _this3 = this;
 
       this.fillequipo.id = equipo.id;
       this.fillequipo.nombre = equipo.nombre;
@@ -12393,14 +12441,14 @@ __webpack_require__.r(__webpack_exports__);
       this.fillequipo.categoria = equipo.categoria_id;
       this.fillequipo.departamento = equipo.departamento_id;
       axios.get('categoria').then(function (response) {
-        _this2.valores = response.data;
+        _this3.valores = response.data;
       });
     },
     update: function update(id) {
-      var _this3 = this;
+      var _this4 = this;
 
       axios.put('equipo/' + id, this.fillequipo).then(function (response) {
-        _this3.listado(_this3.paginate.current_page);
+        _this4.listado(_this4.paginate.current_page);
 
         sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
           position: 'center',
@@ -12412,22 +12460,25 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     select: function select() {
-      var _this4 = this;
+      var _this5 = this;
 
       axios.get('select').then(function (response) {
-        _this4.departamentos = response.data.depa;
+        _this5.departamentos = response.data.depa;
       });
     },
     buscar: function buscar() {
       if (this.depa.length === 0) {
         this.mensaje = 'seleccione un departamento';
       } else {
+        this.filtrar = '';
         this.mensaje = '';
+        this.validarfiltrado = 1;
+        this.validarfiltrado2 = 1;
         this.listado(1);
       }
     },
     eliminar: function eliminar(equipo, page) {
-      var _this5 = this;
+      var _this6 = this;
 
       sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
         title: 'estas seguro?',
@@ -12440,18 +12491,19 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         if (result.value) {
           axios["delete"]('equipo/' + equipo.id).then(function (res) {
-            _this5.listado(page);
+            _this6.listado(page);
           });
           sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire('eliminado', 'se ah eliminado con exito.', 'success');
         }
       });
     },
     detalles: function detalles(equipo) {
-      var _this6 = this;
+      var _this7 = this;
 
       axios.get('equipo/' + equipo.id).then(function (res) {
-        _this6.detalle = res.data.equipo;
-        _this6.categoria = res.data.equipo.categoria;
+        _this7.detalle = res.data.equipo;
+        _this7.categoria = res.data.equipo.categoria;
+        _this7.depadetalles = res.data.equipo.departamento;
       });
     }
   },
@@ -82298,6 +82350,20 @@ var render = function() {
                         " descripcion de la categoria:  " +
                           _vm._s(this.categoria.descripcion)
                       )
+                    ]),
+                    _vm._v(" "),
+                    _c("h5", [
+                      _vm._v(
+                        " departamento: " +
+                          _vm._s(this.depadetalles.departamento)
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        " descripcion del departamento: " +
+                          _vm._s(this.depadetalles.descripcion)
+                      )
                     ])
                   ])
                 ]),
@@ -82865,16 +82931,84 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "container" }, [
-      _c("p", [
-        _vm._v("desea anadir un nuevo equipo: "),
-        _c(
-          "a",
-          {
-            staticClass: "btn btn-success",
-            attrs: { "data-toggle": "modal", "data-target": "#registrar" }
-          },
-          [_vm._v(" + ")]
-        )
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col m-auto" }, [
+            _c("p", [
+              _vm._v("desea anadir un nuevo equipo: "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-success",
+                  attrs: { "data-toggle": "modal", "data-target": "#registrar" }
+                },
+                [_vm._v(" + ")]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col m-auto" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c(
+                "form",
+                {
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.filtro()
+                    }
+                  }
+                },
+                [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.filtrar,
+                        expression: "filtrar"
+                      }
+                    ],
+                    staticClass: "form-control rounded-pill",
+                    attrs: {
+                      type: "text",
+                      name: "codigo",
+                      placeholder: "introduce el codigo"
+                    },
+                    domProps: { value: _vm.filtrar },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.filtrar = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary rounded-pill",
+                      attrs: { type: "submit" }
+                    },
+                    [_vm._v(" buscar ")]
+                  ),
+                  _vm._v(" "),
+                  _vm.validarfiltrado == 2
+                    ? _c("p", [
+                        _vm._v(" no se ah encontrado el equipo averiado ")
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.validarfiltrado2 == 2
+                    ? _c("p", [_vm._v(" debe introducir el codigo ")])
+                    : _vm._e()
+                ]
+              )
+            ])
+          ])
+        ])
       ]),
       _vm._v(" "),
       _c(
@@ -82911,7 +83045,7 @@ var render = function() {
                       expression: "depa"
                     }
                   ],
-                  staticClass: "form-control",
+                  staticClass: "form-control rounded-pill",
                   attrs: { id: "categoria", name: "categoria" },
                   on: {
                     change: function($event) {
@@ -82946,7 +83080,7 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-primary m-3",
+                    staticClass: "btn btn-primary m-3 rounded-pill",
                     attrs: { type: "submit" }
                   },
                   [_vm._v(" buscar ")]

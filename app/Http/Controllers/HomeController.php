@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Equipo;
+use App\Departamento;
 use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
@@ -44,6 +45,38 @@ class HomeController extends Controller
             $departamentos = $planta->departamentos;
 
             return response()->json(['depa'=>$departamentos],200);
+
+    }
+
+    public function filtro($codigo){
+
+        $user = Auth::user();
+         $planta = $user->planta;
+
+      $equipo = Equipo::where('codigo',$codigo)->first();
+
+      if (is_null($equipo)) {
+
+        $equipo = 1;
+
+         return response()->json($equipo);
+
+      }
+
+        $departamentos = $planta->departamentos;
+
+         foreach ($departamentos as $departamento) {
+
+             if ($departamento->id === $equipo->departamento_id) {
+
+                    return [ $equipo ];
+
+             }
+         }
+
+            $equipo = 1;
+         return response()->json($equipo);
+
 
     }
 

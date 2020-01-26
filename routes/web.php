@@ -8,6 +8,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/info', 'HomeController@Info')->name('info');
+Route::get('/filtro/{filtro}', 'HomeController@filtro')->name('filtro');
 Route::get('/select', 'HomeController@select')->name('select');
 Route::resource('user', 'UserController');
 Route::resource('planta', 'PlantaController');
