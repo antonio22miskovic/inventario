@@ -83955,10 +83955,11 @@ var render = function() {
               _c(
                 "a",
                 {
-                  staticClass: "btn btn-success rounded-pill",
+                  staticClass: " btn btn-lg",
                   attrs: { "data-toggle": "modal", "data-target": "#registrar" }
                 },
-                [_vm._v(" + ")]
+                [_c("font-awesome-icon", { attrs: { icon: "plus" } })],
+                1
               )
             ])
           ]),
@@ -84008,7 +84009,11 @@ var render = function() {
                       staticClass: "btn btn-primary rounded-pill",
                       attrs: { type: "submit" }
                     },
-                    [_vm._v(" buscar ")]
+                    [
+                      _c("font-awesome-icon", { attrs: { icon: "search" } }),
+                      _vm._v(" buscar ")
+                    ],
+                    1
                   ),
                   _vm._v(" "),
                   _vm.validarfiltrado == 2
@@ -84099,7 +84104,11 @@ var render = function() {
                     staticClass: "btn btn-primary m-3 rounded-pill",
                     attrs: { type: "submit" }
                   },
-                  [_vm._v(" buscar ")]
+                  [
+                    _c("font-awesome-icon", { attrs: { icon: "search" } }),
+                    _vm._v(" buscar ")
+                  ],
+                  1
                 )
               ])
             ])
@@ -84188,7 +84197,12 @@ var render = function() {
                                 }
                               }
                             },
-                            [_vm._v(" editar ")]
+                            [
+                              _c("font-awesome-icon", {
+                                attrs: { icon: "marker" }
+                              })
+                            ],
+                            1
                           )
                         ]),
                         _vm._v(" "),
@@ -84207,7 +84221,12 @@ var render = function() {
                                 }
                               }
                             },
-                            [_vm._v("eliminar")]
+                            [
+                              _c("font-awesome-icon", {
+                                attrs: { icon: "trash" }
+                              })
+                            ],
+                            1
                           )
                         ]),
                         _vm._v(" "),
@@ -84227,11 +84246,26 @@ var render = function() {
                                 }
                               }
                             },
-                            [_vm._v(" detalles ")]
+                            [
+                              _c("font-awesome-icon", {
+                                attrs: { icon: "eye" }
+                              })
+                            ],
+                            1
                           )
                         ]),
                         _vm._v(" "),
-                        _c("td", [_c("i", { staticClass: "fas fa-print" })])
+                        _c("td", [
+                          _c(
+                            "button",
+                            [
+                              _c("font-awesome-icon", {
+                                attrs: { icon: "print" }
+                              })
+                            ],
+                            1
+                          )
+                        ])
                       ])
                     }),
                     0
@@ -84397,7 +84431,14 @@ var render = function() {
                       staticClass: "nav-link",
                       on: { click: _vm.departamento }
                     },
-                    [_vm._v("departamentos")]
+                    [
+                      _c("font-awesome-icon", {
+                        staticClass: "mr-2",
+                        attrs: { icon: "building" }
+                      }),
+                      _vm._v(" departamentos")
+                    ],
+                    1
                   )
                 ]),
                 _vm._v(" "),
@@ -84405,7 +84446,11 @@ var render = function() {
                   _c(
                     "a",
                     { staticClass: "nav-link", on: { click: _vm.equipo } },
-                    [_vm._v("equipos")]
+                    [
+                      _c("font-awesome-icon", { attrs: { icon: "server" } }),
+                      _vm._v(" equipos")
+                    ],
+                    1
                   )
                 ]),
                 _vm._v(" "),
@@ -84413,7 +84458,11 @@ var render = function() {
                   _c(
                     "a",
                     { staticClass: "nav-link", on: { click: _vm.categori } },
-                    [_vm._v("categorias")]
+                    [
+                      _c("font-awesome-icon", { attrs: { icon: "list" } }),
+                      _vm._v("categorias")
+                    ],
+                    1
                   )
                 ]),
                 _vm._v(" "),
@@ -84427,7 +84476,7 @@ var render = function() {
                     [
                       _c("font-awesome-icon", {
                         staticClass: "mr-2",
-                        attrs: { icon: "building" }
+                        attrs: { icon: "info" }
                       }),
                       _vm._v("info")
                     ],
@@ -84439,7 +84488,12 @@ var render = function() {
                   _c(
                     "a",
                     { staticClass: "nav-link", on: { click: _vm.logout } },
-                    [_vm._v("logout")]
+                    [
+                      _c("font-awesome-icon", {
+                        attrs: { icon: "sign-out-alt" }
+                      })
+                    ],
+                    1
                   )
                 ])
               ])
@@ -96758,7 +96812,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_0__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__["faHome"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__["faBuilding"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__["faImages"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__["faAt"]);
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_0__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__["faHome"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__["faBuilding"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__["faImages"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__["faAt"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__["faSearch"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__["faPrint"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__["faEye"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__["faTrash"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__["faMarker"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__["faServer"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__["faInfo"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__["faList"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__["faPlus"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_1__["faSignOutAlt"]);
 Vue.component('font-awesome-icon', _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_2__["FontAwesomeIcon"]);
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 Vue.prototype.$http = window.axios; //boostrap-vu

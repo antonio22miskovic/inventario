@@ -10,20 +10,20 @@
       			<div class="collapse navbar-collapse" id="navbarResponsive">
         			<ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" v-on:click="departamento">departamentos</a>
+                    <a class="nav-link" v-on:click="departamento"> <font-awesome-icon icon="building" class="mr-2"/> departamentos</a>
                   </li>
 
           				<li class="nav-item">
-            				  <a class="nav-link" v-on:click="equipo">equipos</a>
+            				  <a class="nav-link" v-on:click="equipo"> <font-awesome-icon icon="server"/> equipos</a>
           				</li>
           				<li class="nav-item btn-group">
-    					         <a class="nav-link" v-on:click="categori">categorias</a>
+    					         <a class="nav-link" v-on:click="categori"> <font-awesome-icon icon="list"/>categorias</a>
           				</li>
           				<li class="nav-item">
-            				<a class="nav-link" data-toggle="modal" data-target="#info">  <font-awesome-icon icon="building" class="mr-2"/>info</a>
+            				<a class="nav-link" data-toggle="modal" data-target="#info">  <font-awesome-icon icon="info" class="mr-2"/>info</a>
           				</li>
           				<li class="nav-item">
-            				  <a class="nav-link" v-on:click="logout">logout</a>
+            				  <a class="nav-link" v-on:click="logout"><font-awesome-icon icon="sign-out-alt"/></a>
           				</li>
         			</ul>
       			</div>

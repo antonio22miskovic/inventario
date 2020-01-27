@@ -151,13 +151,13 @@
           <div class="container">
           <div class="row">
             <div class="col m-auto">
-               <p>desea anadir un nuevo equipo: <a class="btn btn-success rounded-pill" data-toggle="modal" data-target="#registrar"> + </a> </p>
+               <p>desea anadir un nuevo equipo: <a class=" btn btn-lg" data-toggle="modal" data-target="#registrar"> <font-awesome-icon icon="plus" /> </a> </p>
             </div>
             <div class="col m-auto">
               <div class="form-group">
               <form @submit.prevent="filtro()">
                 <input type="text" name="codigo" v-model="filtrar" placeholder="introduce el codigo" class="form-control rounded-pill">
-                <button type="submit" class="btn btn-primary rounded-pill"> buscar </button>
+                <button type="submit" class="btn btn-primary rounded-pill"> <font-awesome-icon icon="search" /> buscar </button>
                 <p v-if="validarfiltrado == 2"> no se ah encontrado el equipo averiado </p>
                  <p v-if="validarfiltrado2 == 2"> debe introducir el codigo </p>
               </form>
@@ -179,7 +179,7 @@
                             <option v-for=" departamento of  departamentos" :key=" departamento.id" :value="departamento.id"> {{ departamento.departamento }}</option>
                           </select>
                           <div class=" text-center">
-                             <button class="btn btn-primary m-3 rounded-pill" type="submit"> buscar </button>
+                             <button class="btn btn-primary m-3 rounded-pill" type="submit"><font-awesome-icon icon="search" /> buscar </button>
                           </div>
                       </div>
                   </div>
@@ -215,10 +215,10 @@
 
               <td>t{{ equipo.nombre }}</td>
               <td>{{ equipo.codigo }}</td>
-              <td class="text-center"> <button class="btn btn-primary text-center" data-toggle="modal" data-target="#editar"  @click.prevent="editar(equipo, paginate.current_page)"> editar </button></td>
-              <td class="text-center"><button class="btn btn-danger text-center"  @click.prevent="eliminar(equipo, paginate.current_page)">eliminar</button></td>
-              <td class="text-center"> <button class="btn btn-primary text-center" data-toggle="modal" data-target="#detallesmodalcenter" @click.prevent="detalles(equipo)"> detalles </button></td>
-              <td><i class="fas fa-print"></i></td>
+              <td class="text-center"> <button class="btn btn-primary text-center" data-toggle="modal" data-target="#editar"  @click.prevent="editar(equipo, paginate.current_page)"> <font-awesome-icon icon="marker" /> </button></td>
+              <td class="text-center"><button class="btn btn-danger text-center"  @click.prevent="eliminar(equipo, paginate.current_page)"><font-awesome-icon icon="trash" /></button></td>
+              <td class="text-center"> <button class="btn btn-primary text-center" data-toggle="modal" data-target="#detallesmodalcenter" @click.prevent="detalles(equipo)">  <font-awesome-icon icon="eye" /> </button></td>
+              <td> <button>  <font-awesome-icon icon="print" /></button> </td>
             </tr>
 
           </tbody>
