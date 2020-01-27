@@ -11763,6 +11763,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Categoria',
@@ -11929,6 +11941,17 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -12367,7 +12390,7 @@ __webpack_require__.r(__webpack_exports__);
     listar: function listar() {
       var _this = this;
 
-      axios.get('categoria').then(function (response) {
+      axios.get('/select/categoria').then(function (response) {
         _this.valores = response.data;
       });
     },
@@ -12686,6 +12709,87 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -12700,7 +12804,7 @@ __webpack_require__.r(__webpack_exports__);
       depadetalles: [],
       filtrar: '',
       equipos: [],
-      mensaje: '',
+      mensaje: 1,
       detalle: [],
       inicio: 'debe selecionar un departamento para la busqueda del equipo averiado',
       valores: [],
@@ -12731,7 +12835,7 @@ __webpack_require__.r(__webpack_exports__);
     filtro: function filtro() {
       var _this = this;
 
-      this.mensaje = '';
+      this.mensaje = 1;
 
       if (this.filtrar.length === 0) {
         this.validarfiltrado = 1;
@@ -12776,7 +12880,7 @@ __webpack_require__.r(__webpack_exports__);
       this.fillequipo.descripcion = equipo.descripcion;
       this.fillequipo.categoria = equipo.categoria_id;
       this.fillequipo.departamento = equipo.departamento_id;
-      axios.get('categoria').then(function (response) {
+      axios.get('/select/categoria').then(function (response) {
         _this3.valores = response.data;
       });
     },
@@ -12804,10 +12908,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     buscar: function buscar() {
       if (this.depa.length === 0) {
-        this.mensaje = 'seleccione un departamento';
+        this.mensaje = 2;
+        this.validarfiltrado = 1;
+        this.validarfiltrado2 = 1;
       } else {
         this.filtrar = '';
-        this.mensaje = '';
+        this.mensaje = 1;
         this.validarfiltrado = 1;
         this.validarfiltrado2 = 1;
         this.listado(1);
@@ -81789,10 +81895,24 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "container" }, [
       _c("div", { staticClass: "row justify-content-center" }, [
-        _vm._m(9),
+        _c("p", [
+          _vm._v("desea anadir una nueva categoria: "),
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-outline-success rounded-pill ",
+              attrs: {
+                "data-toggle": "modal",
+                "data-target": "#modalregistrarcategoria"
+              }
+            },
+            [_c("font-awesome-icon", { attrs: { icon: "plus" } })],
+            1
+          )
+        ]),
         _vm._v(" "),
-        _c("table", { staticClass: "table" }, [
-          _vm._m(10),
+        _c("table", { staticClass: "table " }, [
+          _vm._m(9),
           _vm._v(" "),
           _c(
             "tbody",
@@ -81809,7 +81929,7 @@ var render = function() {
                     _c(
                       "button",
                       {
-                        staticClass: "btn btn-primary text-center",
+                        staticClass: "btn btn-outline-warning text-center",
                         attrs: {
                           "data-toggle": "modal",
                           "data-target": "#editar"
@@ -81824,7 +81944,8 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v(" editar ")]
+                      [_c("font-awesome-icon", { attrs: { icon: "marker" } })],
+                      1
                     )
                   ]),
                   _vm._v(" "),
@@ -81832,7 +81953,7 @@ var render = function() {
                     _c(
                       "button",
                       {
-                        staticClass: "btn btn-danger text-center",
+                        staticClass: "btn btn-outline-danger text-center",
                         on: {
                           click: function($event) {
                             $event.preventDefault()
@@ -81843,7 +81964,8 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("eliminar")]
+                      [_c("font-awesome-icon", { attrs: { icon: "trash" } })],
+                      1
                     )
                   ]),
                   _vm._v(" "),
@@ -81851,7 +81973,7 @@ var render = function() {
                     _c(
                       "button",
                       {
-                        staticClass: "btn btn-primary text-center",
+                        staticClass: "btn btn-outline-primary text-center",
                         attrs: {
                           "data-toggle": "modal",
                           "data-target": "#detallesmodalcenter"
@@ -81863,7 +81985,8 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v(" detalles ")]
+                      [_c("font-awesome-icon", { attrs: { icon: "eye" } })],
+                      1
                     )
                   ])
                 ])
@@ -82107,25 +82230,6 @@ var staticRenderFns = [
           [_vm._v("actualizar")]
         )
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", [
-      _vm._v("desea anadir una nueva categoria: "),
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-success",
-          attrs: {
-            "data-toggle": "modal",
-            "data-target": "#modalregistrarcategoria"
-          }
-        },
-        [_vm._v(" + ")]
-      )
     ])
   },
   function() {
@@ -82513,10 +82617,21 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "container" }, [
       _c("div", { staticClass: "row justify-content-center" }, [
-        _vm._m(10),
+        _c("p", [
+          _vm._v("desea anadir un nuevo departamento: "),
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-outline-success rounded-pill",
+              attrs: { "data-toggle": "modal", "data-target": "#registrar" }
+            },
+            [_c("font-awesome-icon", { attrs: { icon: "plus" } })],
+            1
+          )
+        ]),
         _vm._v(" "),
         _c("table", { staticClass: "table" }, [
-          _vm._m(11),
+          _vm._m(10),
           _vm._v(" "),
           _c(
             "tbody",
@@ -82533,7 +82648,7 @@ var render = function() {
                     _c(
                       "button",
                       {
-                        staticClass: "btn btn-primary text-center",
+                        staticClass: "btn btn-outline-warning text-center",
                         attrs: {
                           "data-toggle": "modal",
                           "data-target": "#editar"
@@ -82548,7 +82663,8 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v(" editar ")]
+                      [_c("font-awesome-icon", { attrs: { icon: "marker" } })],
+                      1
                     )
                   ]),
                   _vm._v(" "),
@@ -82556,7 +82672,7 @@ var render = function() {
                     _c(
                       "button",
                       {
-                        staticClass: "btn btn-danger text-center",
+                        staticClass: "btn btn-outline-danger text-center",
                         on: {
                           click: function($event) {
                             $event.preventDefault()
@@ -82567,7 +82683,8 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("eliminar")]
+                      [_c("font-awesome-icon", { attrs: { icon: "trash" } })],
+                      1
                     )
                   ]),
                   _vm._v(" "),
@@ -82575,7 +82692,7 @@ var render = function() {
                     _c(
                       "button",
                       {
-                        staticClass: "btn btn-primary text-center",
+                        staticClass: "btn btn-outline-primary text-center",
                         attrs: {
                           "data-toggle": "modal",
                           "data-target": "#detallesmodalcenter"
@@ -82587,7 +82704,8 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v(" detalles ")]
+                      [_c("font-awesome-icon", { attrs: { icon: "eye" } })],
+                      1
                     )
                   ])
                 ])
@@ -82834,22 +82952,6 @@ var staticRenderFns = [
           [_vm._v("registrar")]
         )
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", [
-      _vm._v("desea anadir un nuevo departamento: "),
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-success",
-          attrs: { "data-toggle": "modal", "data-target": "#registrar" }
-        },
-        [_vm._v(" + ")]
-      )
     ])
   },
   function() {
@@ -83949,13 +84051,13 @@ var render = function() {
     _c("div", { staticClass: "container" }, [
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col m-auto" }, [
+          _c("div", { staticClass: "col-sm-6" }, [
             _c("p", [
               _vm._v("desea anadir un nuevo equipo: "),
               _c(
                 "a",
                 {
-                  staticClass: " btn btn-lg",
+                  staticClass: "btn btn-outline-success rounded-pill",
                   attrs: { "data-toggle": "modal", "data-target": "#registrar" }
                 },
                 [_c("font-awesome-icon", { attrs: { icon: "plus" } })],
@@ -83964,70 +84066,79 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col m-auto" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c(
-                "form",
-                {
-                  on: {
-                    submit: function($event) {
-                      $event.preventDefault()
-                      return _vm.filtro()
-                    }
+          _c("div", { staticClass: "col-sm-6" }, [
+            _c(
+              "form",
+              {
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.filtro()
                   }
-                },
-                [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.filtrar,
-                        expression: "filtrar"
-                      }
-                    ],
-                    staticClass: "form-control rounded-pill",
-                    attrs: {
-                      type: "text",
-                      name: "codigo",
-                      placeholder: "introduce el codigo"
-                    },
-                    domProps: { value: _vm.filtrar },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                }
+              },
+              [
+                _c("div", { staticClass: "container" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.filtrar,
+                            expression: "filtrar"
+                          }
+                        ],
+                        staticClass: "form-control rounded-pill",
+                        attrs: {
+                          type: "text",
+                          name: "codigo",
+                          placeholder: "codigo"
+                        },
+                        domProps: { value: _vm.filtrar },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.filtrar = $event.target.value
+                          }
                         }
-                        _vm.filtrar = $event.target.value
-                      }
-                    }
-                  }),
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-1" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-outline-primary rounded-pill",
+                          attrs: { type: "submit" }
+                        },
+                        [
+                          _c("font-awesome-icon", { attrs: { icon: "search" } })
+                        ],
+                        1
+                      )
+                    ])
+                  ]),
                   _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary rounded-pill",
-                      attrs: { type: "submit" }
-                    },
-                    [
-                      _c("font-awesome-icon", { attrs: { icon: "search" } }),
-                      _vm._v(" buscar ")
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _vm.validarfiltrado == 2
-                    ? _c("p", [
-                        _vm._v(" no se ah encontrado el equipo averiado ")
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.validarfiltrado2 == 2
-                    ? _c("p", [_vm._v(" debe introducir el codigo ")])
-                    : _vm._e()
-                ]
-              )
-            ])
+                  _c("div", { staticClass: "text-center" }, [
+                    _vm.validarfiltrado == 2
+                      ? _c("p", { staticClass: "text-danger" }, [
+                          _c("small", [_vm._v(" verifique su codigo ")])
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.validarfiltrado2 == 2
+                      ? _c("p", { staticClass: "text-danger" }, [
+                          _c("small", [_vm._v("  debe introducir el codigo ")])
+                        ])
+                      : _vm._e()
+                  ])
+                ])
+              ]
+            )
           ])
         ])
       ]),
@@ -84044,15 +84155,11 @@ var render = function() {
         },
         [
           _c("div", { staticClass: "form-group" }, [
-            _c(
-              "span",
-              { staticClass: "col-md-1 col-md-offset-2 text-center" },
-              [
-                _c("label", [
-                  _vm._v("seleccione un departamento para la busqueda")
-                ])
-              ]
-            ),
+            _c("span", { staticClass: "text-center" }, [
+              _c("label", { staticClass: "text-center" }, [
+                _vm._v("seleccione un departamento para la busqueda")
+              ])
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "col justify-content-center" }, [
               _c(
@@ -84101,12 +84208,12 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-primary m-3 rounded-pill",
+                    staticClass: "btn btn-outline-primary m-3 rounded-pill",
                     attrs: { type: "submit" }
                   },
                   [
                     _c("font-awesome-icon", { attrs: { icon: "search" } }),
-                    _vm._v(" buscar ")
+                    _vm._v("\n                             buscar ")
                   ],
                   1
                 )
@@ -84116,15 +84223,18 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("p", { staticClass: "text-center" }, [
-        _vm._v(" " + _vm._s(this.mensaje) + " ")
-      ]),
+      _vm.mensaje === 2
+        ? _c("p", { staticClass: "text-danger text-center" }, [
+            _vm._v(" debe seleccionar un departamento ")
+          ])
+        : _vm._e(),
       _vm._v(" "),
       _vm.equipos.length === 0
         ? _c(
             "div",
             {
-              staticClass: "alert alert-success alert-dismissible fade show",
+              staticClass:
+                "alert alert-success alert-dismissible fade show rounded-pill",
               attrs: { role: "alert" }
             },
             [
@@ -84182,7 +84292,8 @@ var render = function() {
                           _c(
                             "button",
                             {
-                              staticClass: "btn btn-primary text-center",
+                              staticClass:
+                                "btn btn-outline-warning text-center",
                               attrs: {
                                 "data-toggle": "modal",
                                 "data-target": "#editar"
@@ -84210,7 +84321,7 @@ var render = function() {
                           _c(
                             "button",
                             {
-                              staticClass: "btn btn-danger text-center",
+                              staticClass: "btn btn-outline-danger text-center",
                               on: {
                                 click: function($event) {
                                   $event.preventDefault()
@@ -84234,7 +84345,8 @@ var render = function() {
                           _c(
                             "button",
                             {
-                              staticClass: "btn btn-primary text-center",
+                              staticClass:
+                                "btn btn-outline-primary text-center",
                               attrs: {
                                 "data-toggle": "modal",
                                 "data-target": "#detallesmodalcenter"
@@ -84255,9 +84367,13 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _c("td", [
+                        _c("td", { staticClass: "text-center" }, [
                           _c(
                             "button",
+                            {
+                              staticClass:
+                                " btn btn-outline-secondary text-center"
+                            },
                             [
                               _c("font-awesome-icon", {
                                 attrs: { icon: "print" }

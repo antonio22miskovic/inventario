@@ -116,7 +116,7 @@
 
          <div class="container">
             <div class="row justify-content-center">
-              <p>desea anadir un nuevo departamento: <a class="btn btn-success" data-toggle="modal" data-target="#registrar"> + </a> </p>
+              <p>desea anadir un nuevo departamento: <a class="btn btn-outline-success rounded-pill" data-toggle="modal" data-target="#registrar"> <font-awesome-icon icon="plus" />  </a>  </p>
 					<table class="table">
          			 	<thead class="thead-dark">
            					<tr>
@@ -135,9 +135,20 @@
 
               					<td>t{{ departamento.departamento }}</td>
 
-              					<td class="text-center"> <button class="btn btn-primary text-center" data-toggle="modal" data-target="#editar"  @click.prevent="editar(departamento, paginate.current_page)"> editar </button></td>
-              					<td class="text-center"><button class="btn btn-danger text-center"  @click.prevent="eliminar(departamento, paginate.current_page)">eliminar</button></td>
-              					<td class="text-center"> <button class="btn btn-primary text-center" data-toggle="modal" data-target="#detallesmodalcenter" @click.prevent="detalles(departamento)"> detalles </button></td>
+              					<td class="text-center">
+                          <button class="btn btn-outline-warning text-center" data-toggle="modal" data-target="#editar"  @click.prevent="editar(departamento, paginate.current_page)">
+                            <font-awesome-icon icon="marker" />
+                           </button>
+                         </td>
+              					<td class="text-center">
+                          <button class="btn btn-outline-danger text-center"  @click.prevent="eliminar(departamento, paginate.current_page)">
+                            <font-awesome-icon icon="trash" />
+                        </button>
+                      </td>
+              					<td class="text-center">
+                         <button class="btn btn-outline-primary text-center" data-toggle="modal" data-target="#detallesmodalcenter" @click.prevent="detalles(departamento)">
+                           <font-awesome-icon icon="eye" />
+                       </button></td>
 
             				</tr>
 

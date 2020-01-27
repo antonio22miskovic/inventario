@@ -115,7 +115,7 @@ import Swal from 'sweetalert2'
 
             listar(){
 
-                  axios.get('categoria')
+                  axios.get('/select/categoria')
                 .then((response) => {
                 this.valores = response.data;
                 })

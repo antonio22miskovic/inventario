@@ -136,8 +136,11 @@
                                     <div class="col-md-12 text-center">
                                         <button type="submit" class="btn btn-primary btn-lg rounded-pill">actualizar</button>
                                     </div>
+
                                 </div>
+
                             </fieldset>
+
                           </form>
 
                       </div>
@@ -149,56 +152,109 @@
         <div class="container">
 
           <div class="container">
+
           <div class="row">
-            <div class="col m-auto">
-               <p>desea anadir un nuevo equipo: <a class=" btn btn-lg" data-toggle="modal" data-target="#registrar"> <font-awesome-icon icon="plus" /> </a> </p>
+
+            <div class="col-sm-6">
+
+               <p>desea anadir un nuevo equipo: <a class="btn btn-outline-success rounded-pill" data-toggle="modal" data-target="#registrar"> <font-awesome-icon icon="plus" /> </a> </p>
             </div>
-            <div class="col m-auto">
-              <div class="form-group">
+
+            <div class="col-sm-6">
+
               <form @submit.prevent="filtro()">
-                <input type="text" name="codigo" v-model="filtrar" placeholder="introduce el codigo" class="form-control rounded-pill">
-                <button type="submit" class="btn btn-primary rounded-pill"> <font-awesome-icon icon="search" /> buscar </button>
-                <p v-if="validarfiltrado == 2"> no se ah encontrado el equipo averiado </p>
-                 <p v-if="validarfiltrado2 == 2"> debe introducir el codigo </p>
+
+                <div class="container">
+
+                  <div class="row">
+
+                      <div class="col">
+
+                      <input type="text" name="codigo" v-model="filtrar" placeholder="codigo" class="form-control rounded-pill">
+
+                      </div>
+
+                      <div class="col-sm-1">
+
+                      <button type="submit" class="btn btn-outline-primary rounded-pill">
+                          <font-awesome-icon icon="search" />
+                      </button>
+
+                       </div>
+
+                  </div>
+
+                  <div class="text-center">
+
+                      <p class="text-danger" v-if="validarfiltrado == 2"> <small> verifique su codigo </small> </p>
+
+                 <p class="text-danger" v-if="validarfiltrado2 == 2"> <small>  debe introducir el codigo </small> </p>
+
+                  </div>
+
+                </div>
+
+
+
               </form>
-              </div>
+
+
+
             </div>
 
           </div>
+
           </div>
 
           <form @submit.prevent="buscar()">
+
                 <div class="form-group">
 
-                    <span class="col-md-1 col-md-offset-2 text-center"><label>seleccione un departamento para la busqueda</label></span>
+                    <span class="text-center">
+                      <label class="text-center">seleccione un departamento para la busqueda</label>
+                    </span>
                       <div class="col justify-content-center">
+
                           <select id="categoria"
                                   v-model="depa"
                                   name="categoria"
                                   class="form-control rounded-pill">
+
                             <option v-for=" departamento of  departamentos" :key=" departamento.id" :value="departamento.id"> {{ departamento.departamento }}</option>
+
                           </select>
+
                           <div class=" text-center">
-                             <button class="btn btn-primary m-3 rounded-pill" type="submit"><font-awesome-icon icon="search" /> buscar </button>
+
+                             <button class="btn btn-outline-primary m-3 rounded-pill" type="submit"><font-awesome-icon icon="search" />
+                             buscar </button>
+
                           </div>
+
                       </div>
+
                   </div>
+
           </form>
 
-            <p class="text-center"> {{ this.mensaje }} </p>
+            <p v-if="mensaje === 2" class="text-danger text-center"> debe seleccionar un departamento </p>
 
+          <div class="alert alert-success alert-dismissible fade show rounded-pill" role="alert" v-if="equipos.length === 0" >
 
-
-          <div class="alert alert-success alert-dismissible fade show" role="alert" v-if="equipos.length === 0" >
             <strong> mensaje !</strong> debe selecionar un departamento para la busqueda del equipo averiado
 
         </div>
 
         <div v-else>
+
           <div class="container">
+
             <div class="row justify-content-center">
+
 	     <table class="table">
+
           <thead class="thead-dark">
+
             <tr>
 
                 <th scope="col">nombre</th>
@@ -209,19 +265,44 @@
                 <th scope="col" class="text-center">pdf</th>
 
             </tr>
+
           </thead>
+
           <tbody>
+
             <tr v-for="equipo of equipos" :key="equipo.id">
 
               <td>t{{ equipo.nombre }}</td>
               <td>{{ equipo.codigo }}</td>
-              <td class="text-center"> <button class="btn btn-primary text-center" data-toggle="modal" data-target="#editar"  @click.prevent="editar(equipo, paginate.current_page)"> <font-awesome-icon icon="marker" /> </button></td>
-              <td class="text-center"><button class="btn btn-danger text-center"  @click.prevent="eliminar(equipo, paginate.current_page)"><font-awesome-icon icon="trash" /></button></td>
-              <td class="text-center"> <button class="btn btn-primary text-center" data-toggle="modal" data-target="#detallesmodalcenter" @click.prevent="detalles(equipo)">  <font-awesome-icon icon="eye" /> </button></td>
-              <td> <button>  <font-awesome-icon icon="print" /></button> </td>
+              <td class="text-center">
+                <button class="btn btn-outline-warning text-center" data-toggle="modal" data-target="#editar"  @click.prevent="editar(equipo, paginate.current_page)">
+                    <font-awesome-icon icon="marker" />
+                  </button>
+
+                </td>
+
+              <td class="text-center">
+                <button class="btn btn-outline-danger text-center"  @click.prevent="eliminar(equipo, paginate.current_page)">
+                  <font-awesome-icon icon="trash" />
+                </button>
+              </td>
+
+              <td class="text-center">
+               <button class="btn btn-outline-primary text-center" data-toggle="modal" data-target="#detallesmodalcenter" @click.prevent="detalles(equipo)">
+                 <font-awesome-icon icon="eye" />
+               </button>
+             </td>
+
+              <td class="text-center">
+                <button class=" btn btn-outline-secondary text-center">
+                 <font-awesome-icon icon="print" />
+               </button>
+             </td>
+
             </tr>
 
           </tbody>
+
       </table>
 
       <nav aria-label="Page navigation example" >
@@ -272,7 +353,7 @@ import example from '../components/ExampleComponent.vue'
       depadetalles:[],
       filtrar:'',
   		equipos:[],
-      mensaje:'',
+      mensaje:1,
       detalle:[],
       inicio: 'debe selecionar un departamento para la busqueda del equipo averiado',
       valores:[],
@@ -313,7 +394,7 @@ import example from '../components/ExampleComponent.vue'
 
     filtro(){
 
-        this.mensaje = '';
+        this.mensaje = 1;
 
       if (this.filtrar.length === 0) {
 
@@ -373,7 +454,7 @@ import example from '../components/ExampleComponent.vue'
       this.fillequipo.categoria = equipo.categoria_id;
       this.fillequipo.departamento = equipo.departamento_id;
 
-      axios.get('categoria')
+      axios.get('/select/categoria')
              .then((response) => {
             this.valores = response.data;
              })
@@ -413,12 +494,14 @@ import example from '../components/ExampleComponent.vue'
     buscar(){
        if (this.depa.length === 0) {
 
-             this.mensaje = 'seleccione un departamento';
+             this.mensaje = 2;
+              this.validarfiltrado = 1;
+            this.validarfiltrado2 = 1;
 
         }else{
 
             this.filtrar = '';
-           this.mensaje = '';
+           this.mensaje = 1;
            this.validarfiltrado = 1;
             this.validarfiltrado2 = 1;
 

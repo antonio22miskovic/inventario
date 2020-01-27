@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Equipo;
 use App\Departamento;
+use App\Categoria;
 use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
@@ -78,6 +79,11 @@ class HomeController extends Controller
          return response()->json($equipo);
 
 
+    }
+
+    public function selectcategoria(){
+
+        return Categoria::all();
     }
 
 }
