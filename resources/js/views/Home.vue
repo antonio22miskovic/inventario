@@ -9,26 +9,21 @@
       				</button>
       			<div class="collapse navbar-collapse" id="navbarResponsive">
         			<ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" v-on:click="departamento">departamentos</a>
+                  </li>
 
           				<li class="nav-item">
-            				<a class="nav-link" v-on:click="cambiar">{{ this.button }}</a>
+            				  <a class="nav-link" v-on:click="equipo">equipos</a>
           				</li>
           				<li class="nav-item btn-group">
-    						<a class="nav-link dropdown-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >categoria</a>
-
-    						 <div class="dropdown-menu dropdown-menu-right">
-
-   						 		<a class="dropdown-item" data-toggle="modal" data-target="#categoria" > + </a>
-						    	<button class="dropdown-item" type="button">listado</button>
-
-  							</div>
-
+    					         <a class="nav-link" v-on:click="categori">categorias</a>
           				</li>
           				<li class="nav-item">
             				<a class="nav-link" data-toggle="modal" data-target="#info">  <font-awesome-icon icon="building" class="mr-2"/>info</a>
           				</li>
           				<li class="nav-item">
-            				<a class="nav-link" v-on:click="logout">logout</a>
+            				  <a class="nav-link" v-on:click="logout">logout</a>
           				</li>
         			</ul>
       			</div>
@@ -60,65 +55,33 @@
             </div>
         </div>
     </div>
-
-    <div class="modal fade" id="categoria" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                     <h5 class="modal-title " id="exampleModalCenterTitle">agrega una nueva categoria</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                      </button>
-                </div>
-              	<div class="modal-body">
-               		<div>
-
-               			 <form class="form-horizontal" @submit.prevent="registrarcategoria">
-                                <h5 class="text-center"> registra una nueva categoria</h5>
-                               <div class="form-group p-3">
-                                    <label> nombre de la categoria:</label>
-                                    <input type="text" v-model="categoria.categoria" class="form-control rounded-pill" placeholder=" nombre de la categoria">
-                                 </div>
-                                 <div class="form-group p-3">
-                                    <label> deja una breve descripcion de la categoria:</label>
-                                    <input type="text" v-model="categoria.descripcion" class="form-control rounded-pill" placeholder="breve descripcion" >
-                                </div>
-                                <div class="container text-center">
-                                    <button type="submit" class="btn btn-primary rounded-pill"> agregar </button>
-                                </div>
-                            </form>
-
-                	</div>
-                </div>
-                <div class="modal-footer">
-                	<button type="button" class="btn btn-secondary rounded-pill" data-dismiss="modal">Close</button>
-
-              	</div>
-            </div>
-        </div>
-    </div>
-
     <div class="row p-3">
 
-
     	<ListadoEquipos v-if="listado === true"></ListadoEquipos>
-      <departamento v-if="registrar === true"></departamento>
+
+      <departamento v-if="depa === true"></departamento>
+
+      <Categoria v-if="registrarcategoria === true"></Categoria>
 
     </div>
 
  </div>
 </template>
 <script>
+
 import Swal from 'sweetalert2'
 import departamento from '../components/ListadoEquipos.vue'
 import ListadoEquipos from '../components/Departamento.vue'
+import Categoria from '../components/Categoria.vue'
+
 
 	export default{
 
 		components:{
 
       departamento,
-			ListadoEquipos
+			ListadoEquipos,
+      Categoria
 		},
 
 		 mounted() {
@@ -132,13 +95,12 @@ import ListadoEquipos from '../components/Departamento.vue'
 			return{
 
 				user:[],
-    			planta:[],
+    		planta:[],
 				listado:false,
-				registrar:true,
-        depa: false,
+				registrarcategoria:false,
+        depa: true,
 
-				button: 'departamentos',
-				categoria:[{
+						categoria:[{
                     'categoria':'',
                     'descripcion':''
                 }],
@@ -168,64 +130,86 @@ import ListadoEquipos from '../components/Departamento.vue'
 
 			},
 
-			cambiar(){
+			departamento(){
 
-				if (this.listado === true && this.registrar === false) {
-
-						this.listado = false;
-						this.registrar = true;
-						this.button = 'departamentos';
-				}else{
+				if (this.listado === true && this.depa === false && this.registrarcategoria === false) {
 
 						this.listado = true;
-						this.registrar = false;
-						this.button = 'equipos';
-				}
-			},
+						this.depa = false;
+						this.registrarcategoria = false;
 
-			 registrarcategoria(){
+				}else{
 
-                const cat = {
-                    'categoria': this.categoria.categoria,
-                    'descripcion' : this.categoria.descripcion
-                };
+            if (this.listado === false && this.depa === true && this.registrarcategoria === false) {
 
-                axios.post('categoria', cat)
-                 .then((response) => {
-                    this.categoria.categoria = '';
-                 this.categoria.descripcion = '';
+              this.listado = true;
+              this.depa = false;
+              this.registrarcategoria = false;
 
-                Swal.fire({
-        		position: 'center',
-        		icon: 'success',
-        		title: ' se ah registrado con exito',
-        		showConfirmButton: false,
-        		timer: 1500
+            }else{
 
-                        });
-
-                      })
-                  .catch((error) => {
-                      if (error.response) {
-
-                             console.log(error.response.data);
-                             console.log(error.response.status);
-                             console.log(error.response.headers);
-
-                     } else if (error.request) {
-
-                            console.log(error.request);
-                     } else {
-
-                            console.log('Error', error.message);
-                     }
-                 });
-            },
-            departcomponent(){
-
-
+                this.listado = true;
+                this.depa = false;
+                this.registrarcategoria = false;
 
             }
+				  }
+			},
+
+      equipo(){
+
+       if (this.listado === false  && this.depa === true && this.registrarcategoria === false) {
+
+            this.listado = false;
+            this.depa = true;
+            this.registrarcategoria = false;
+
+        }else{
+
+            if (this.listado === true && this.depa === false && this.registrarcategoria === false) {
+
+              this.listado = false;
+              this.depa = true;
+              this.registrarcategoria = false;
+
+            }else{
+
+                this.listado = false;
+                this.depa = true;
+                this.registrarcategoria = false;
+
+            }
+          }
+
+      },
+
+      categori(){
+
+         if (this.listado === false && this.depa === false && this.registrarcategoria === true) {
+
+            this.listado = false;
+            this.depa = false;
+            this.registrarcategoria = true;
+
+        }else{
+
+            if (this.listado === false && this.depa === false && this.registrarcategoria === false) {
+
+              this.listado = false;
+              this.depa = false;
+              this.registrarcategoria = true;
+
+            }else{
+
+                this.listado = false;
+                this.depa = false;
+                this.registrarcategoria = true;
+
+            }
+          }
+
+
+      },
 
 		},
 	}

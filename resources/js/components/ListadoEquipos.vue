@@ -151,7 +151,7 @@
           <div class="container">
           <div class="row">
             <div class="col m-auto">
-               <p>desea anadir un nuevo equipo: <a class="btn btn-success" data-toggle="modal" data-target="#registrar"> + </a> </p>
+               <p>desea anadir un nuevo equipo: <a class="btn btn-success rounded-pill" data-toggle="modal" data-target="#registrar"> + </a> </p>
             </div>
             <div class="col m-auto">
               <div class="form-group">
@@ -195,7 +195,8 @@
         </div>
 
         <div v-else>
-
+          <div class="container">
+            <div class="row justify-content-center">
 	     <table class="table">
           <thead class="thead-dark">
             <tr>
@@ -205,6 +206,7 @@
                 <th scope="col" class="text-center">editar</th>
                 <th scope="col" class="text-center">eliminar</th>
                 <th scope="col" class="text-center">ver</th>
+                <th scope="col" class="text-center">pdf</th>
 
             </tr>
           </thead>
@@ -216,6 +218,7 @@
               <td class="text-center"> <button class="btn btn-primary text-center" data-toggle="modal" data-target="#editar"  @click.prevent="editar(equipo, paginate.current_page)"> editar </button></td>
               <td class="text-center"><button class="btn btn-danger text-center"  @click.prevent="eliminar(equipo, paginate.current_page)">eliminar</button></td>
               <td class="text-center"> <button class="btn btn-primary text-center" data-toggle="modal" data-target="#detallesmodalcenter" @click.prevent="detalles(equipo)"> detalles </button></td>
+              <td><i class="fas fa-print"></i></td>
             </tr>
 
           </tbody>
@@ -242,7 +245,8 @@
             </li>
           </ul>
       </nav>
-
+    </div>
+  </div>
     </div>
     </div>
 	</b-container>

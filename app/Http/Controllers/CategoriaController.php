@@ -8,9 +8,23 @@ use Illuminate\Http\Request;
 class CategoriaController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        return Categoria::all();
+         $categoria = Categoria::orderBy('id', 'desc')->paginate(5);
+         return [
+
+            'paginate' => [
+
+                'total' => $categoria->total(),
+                'current_page' => $categoria->currentPage(),
+                'per_page' => $categoria->perPage(),
+                'last_page' => $categoria->lastPage(),
+                'from' => $categoria->firstItem(),
+                'to' => $categoria->lastPage(),
+
+            ],
+           'categoria' => $categoria
+        ];
     }
 
     public function store(Request $request)
