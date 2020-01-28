@@ -18,7 +18,7 @@ class PlantaTableSeeder extends Seeder
     		'descripcion' => 'procesamiento de pastas',
     		'localidad' => 'maracay calle x',
             'rif' => '8321986789163412841894612',
-    		'user_id' => '1'
+
 
         	]);
         	Planta::create([
@@ -27,7 +27,7 @@ class PlantaTableSeeder extends Seeder
     		'descripcion' => 'procesamiento de nucitas',
     		'localidad' => 'maracay calle x',
             'rif' => '8363128362163412841894612',
-    		'user_id' => '2'
+
 
         	]);
 
@@ -37,7 +37,7 @@ class PlantaTableSeeder extends Seeder
     		'descripcion' => ',olinos de venezuela',
     		'localidad' => 'maracay calle x',
             'rif' => '83219863163412841894612',
-    		'user_id' => '3'
+
 
         	]);
 
@@ -47,7 +47,7 @@ class PlantaTableSeeder extends Seeder
     		'descripcion' => 'alimentos para animales',
     		'localidad' => 'maracay calle x',
             'rif' => '8321986316858841894612',
-    		'user_id' => '4'
+
 
         	]);
 
@@ -57,7 +57,7 @@ class PlantaTableSeeder extends Seeder
     		'descripcion' => 'procesamiento de cacao',
     		'localidad' => 'magdaleno calle x',
             'rif' => '832198631283623423425894612',
-    		'user_id' => '5'
+
 
         	]);
     }

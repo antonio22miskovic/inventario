@@ -22,12 +22,11 @@ class Planta extends Model
 
      protected $hidden = [
 
-        'user_id'
 
     ];
-    //uno a uno con user funciona
-    public function user(){
-    	return $this->belongsTo(User::class);
+    //uno a muchos con user funciona
+    public function users(){
+        return $this->hasMany(User::class);
     }
 
         // de uno a muchos con equipos

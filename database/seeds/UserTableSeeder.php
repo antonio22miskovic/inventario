@@ -19,7 +19,7 @@ class UserTableSeeder extends Seeder
         	'cedula' => '127137013',
         	'email' => 'juan@gmail.com',
         	'password' => bcrypt(1234),
-
+            'planta_id' => 1
 
         ]);
 
@@ -42,6 +42,7 @@ class UserTableSeeder extends Seeder
         	'cedula' => '24234442',
         	'email' => 'vilo@gmail.com',
         	'password' => bcrypt(1234),
+            'planta_id' => 2,
 
 
         ]);
@@ -53,6 +54,7 @@ class UserTableSeeder extends Seeder
         	'cedula' => '2423421',
         	'email' => 'perez@gmail.com',
         	'password' => bcrypt(1234),
+             'planta_id' => 3,
 
 
         ]);
@@ -64,6 +66,7 @@ class UserTableSeeder extends Seeder
         	'cedula' => '214423425',
         	'email' => 'calos@gmail.com',
         	'password' => bcrypt(1234),
+             'planta_id' => 4,
 
 
         ]);
@@ -75,6 +78,7 @@ class UserTableSeeder extends Seeder
         	'cedula' => '1234312412',
         	'email' => 'manuel@gmail.com',
         	'password' => bcrypt(1234),
+             'planta_id' => 5,
 
 
         ]);

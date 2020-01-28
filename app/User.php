@@ -2,7 +2,6 @@
 
 namespace App;
 use App\Planta;
-
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -22,7 +21,7 @@ class User extends Authenticatable
         'apellido',
         'cedula',
         'email',
-
+        'planta_id'
 
     ];
 
@@ -51,7 +50,9 @@ class User extends Authenticatable
     ];
     // de uno a uno con plantas de procesamiento
     public function planta(){
-        return $this->hasOne(Planta::class);;
+
+      return $this->belongsTo(Planta::class);
+
     }
 
 }
