@@ -11,6 +11,7 @@ Route::get('/info', 'HomeController@Info');
 Route::get('/filtro/{filtro}', 'HomeController@filtro');
 Route::get('/select/categoria', 'HomeController@selectcategoria');
 Route::get('/select', 'HomeController@select');
+Route::get('/pdf/{id}', 'HomeController@pdf');
 
 Route::group(['middleware'=>'auth'], function() {
 

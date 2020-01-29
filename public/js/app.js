@@ -12832,6 +12832,10 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    pdf: function pdf(equipo) {
+      var datos = equipo.id;
+      window.open('/pdf/' + datos);
+    },
     filtro: function filtro() {
       var _this = this;
 
@@ -84372,7 +84376,12 @@ var render = function() {
                             "button",
                             {
                               staticClass:
-                                " btn btn-outline-secondary text-center"
+                                " btn btn-outline-secondary text-center",
+                              on: {
+                                click: function($event) {
+                                  return _vm.pdf(equipo)
+                                }
+                              }
                             },
                             [
                               _c("font-awesome-icon", {

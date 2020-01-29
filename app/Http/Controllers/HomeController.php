@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Equipo;
 use App\Departamento;
 use App\Categoria;
+use PDF;
 use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
@@ -84,6 +85,20 @@ class HomeController extends Controller
     public function selectcategoria(){
 
         return Categoria::all();
+    }
+
+    public function pdf($id){
+
+        $equipo = Equipo::find($id);
+
+            $categoria = $equipo->categoria;
+            $departamento = $equipo->departamento;
+            $planta = $departamento->planta;
+
+                $pdf = PDF::loadView('layouts.pdf',['categoria'=> $categoria , 'departamento' => $departamento, 'planta' => $planta , 'equipo' => $equipo]);
+
+        return $pdf->stream();
+
     }
 
 }

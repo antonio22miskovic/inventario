@@ -294,7 +294,7 @@
              </td>
 
               <td class="text-center">
-                <button class=" btn btn-outline-secondary text-center">
+                <button class=" btn btn-outline-secondary text-center" @click="pdf(equipo)">
                  <font-awesome-icon icon="print" />
                </button>
              </td>
@@ -391,6 +391,13 @@ import example from '../components/ExampleComponent.vue'
   }
 },
   methods: {
+
+    pdf(equipo){
+
+      let datos = equipo.id;
+            window.open('/pdf/'+ datos);
+
+    },
 
     filtro(){
 
