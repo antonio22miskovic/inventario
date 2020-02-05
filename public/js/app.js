@@ -82520,7 +82520,7 @@ var render = function() {
                     [
                       _c("fieldset", [
                         _c("legend", { staticClass: "text-center header" }, [
-                          _vm._v("actualizar los datos del departamento")
+                          _vm._v("introduce los datos del nuevo departamento")
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "form-group" }, [

@@ -84,7 +84,7 @@
                 <div class="modal-body">
                       <form class="form-horizontal" @submit.prevent="registrar()">
                         <fieldset>
-                            <legend class="text-center header">actualizar los datos del departamento</legend>
+                            <legend class="text-center header">introduce los datos del nuevo departamento</legend>
 
                           <div class="form-group">
                               <span class="col-md-1 col-md-offset-2 text-center"><label>departamento</label></span>
