@@ -118,3 +118,7 @@ input {
     flex-flow: column wrap;
 }
 
+a{
+    cursor: pointer;
+}
+
