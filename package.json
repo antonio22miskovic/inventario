@@ -21,5 +21,10 @@
         "sass": "^1.15.2",
         "sass-loader": "^7.1.0",
         "vue": "^2.5.17"
+    },
+    "scripts": {
+      "start": "node index.js",
+      "build": "ng build",
+      "heroku-postbuild": "ng build --prod" // this will be run on Heroku
     }
 }
