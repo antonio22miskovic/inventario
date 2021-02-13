@@ -7,20 +7,20 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                   <h5 class="modal-title " id="exampleModalCenterTitle">nombre del equipo: {{ this.detalle.nombre }}</h5>
+                   <h5 class="modal-title " id="exampleModalCenterTitle">nombre del equipo: {{ detalle.nombre }}</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                       </button>
                 </div>
               <div class="modal-body">
                 <div>
-                  <p> codigo:  {{ this.detalle.codigo }}</p>
-                  <p> marca:  {{ this.detalle.marca }}</p>
-                  <p> modelo:  {{ this.detalle.modelo}}</p>
-                  <p> descripcion:  {{ this.detalle.descripcion}}</p>
+                  <p> codigo:  {{ detalle.codigo }}</p>
+                  <p> marca:  {{ detalle.marca }}</p>
+                  <p> modelo:  {{ detalle.modelo}}</p>
+                  <p> descripcion:  {{ detalle.descripcion}}</p>
                   <h5> categoria del equipo </h5>
-                  <p> categoria:  {{ this.categoria.categoria }}</p>
-                  <p> descripcion de la categoria:  {{ this.categoria.descripcion}}</p>
+                  <p> categoria:  {{ categoria.categoria }}</p>
+                  <p> descripcion de la categoria:  {{ categoria.descripcion}}</p>
                 </div>
               </div>
               <div class="modal-footer">
